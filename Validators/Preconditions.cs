@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Globalization;
 using Res = HanumanInstitute.Validators.Properties.Resources;
+using System.Collections;
 
 namespace HanumanInstitute.Validators
 {
@@ -34,6 +35,22 @@ namespace HanumanInstitute.Validators
         {
             value.CheckNotNull(name);
             if (string.IsNullOrEmpty(value))
+            {
+                ThrowArgumentNullOrEmpty(name);
+            }
+            return value;
+        }
+
+        /// <summary>
+        /// Validates whether specific list is not null or empty, and throws an exception if it is null or empty.
+        /// </summary>
+        /// <param name="value">The value to validate.</param>
+        /// <param name="name">The name of the parameter.</param>
+        public static IEnumerable CheckNotNullOrEmpty(this IEnumerable value, string name)
+        {
+            value.CheckNotNull(name);
+
+            if (!value.GetEnumerator().MoveNext())
             {
                 ThrowArgumentNullOrEmpty(name);
             }
