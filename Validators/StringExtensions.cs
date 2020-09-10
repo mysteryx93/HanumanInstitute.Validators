@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 
@@ -37,5 +38,25 @@ namespace HanumanInstitute.Validators
         /// <returns>The formatted string.</returns>
         public static string FormatInvariant(this string format, params object?[] args) => string.Format(CultureInfo.InvariantCulture, format, args);
 
+        /// <summary>
+        /// Parses a string value into specified data type and returns null if conversion fails.
+        /// </summary>
+        /// <typeparam name="T">The data type to parse into.</typeparam>
+        /// <param name="input">The string value to parse.</param>
+        /// <returns>The parsed value, or null if parsring failed.</returns>
+        public static T? Parse<T>(this string? input) where T : struct
+        {
+            if (string.IsNullOrEmpty(input)) { return null; }
+
+            try
+            {
+                var result = TypeDescriptor.GetConverter(typeof(T)).ConvertFromString(input);
+                return (T)result;
+            }
+            catch (NotSupportedException)
+            {
+                return null;
+            }
+        }
     }
 }

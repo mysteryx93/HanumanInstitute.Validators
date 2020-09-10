@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 
@@ -53,26 +52,6 @@ namespace HanumanInstitute.Validators
             {
                 var targetField = type.GetField(sourceField.Name);
                 targetField?.SetValue(target, sourceField.GetValue(source));
-            }
-        }
-
-
-        /// <summary>
-        /// Parses a string value into specified data type and returns null if conversion fails.
-        /// </summary>
-        /// <typeparam name="T">The data type to parse into.</typeparam>
-        /// <param name="input">The string value to parse.</param>
-        /// <returns>The parsed value, or null if parsring failed.</returns>
-        public static Nullable<T> Parse<T>(this string input) where T : struct
-        {
-            try
-            {
-                var result = TypeDescriptor.GetConverter(typeof(T)).ConvertFromString(input);
-                return (T)result;
-            }
-            catch (NotSupportedException)
-            {
-                return null;
             }
         }
 
