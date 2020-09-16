@@ -39,6 +39,14 @@ namespace HanumanInstitute.Validators
         public static string FormatInvariant(this string format, params object?[] args) => string.Format(CultureInfo.InvariantCulture, format, args);
 
         /// <summary>
+        /// Returns whether the two string values are equal, using InvariantCultureIgnoreCase. Note that extension methods work on null values.
+        /// </summary>
+        /// <param name="value1">The first value to compare.</param>
+        /// <param name="value2">The value to compare to.</param>
+        /// <returns>Whether the two values are equal.</returns>
+        public static bool EqualsInvariant(this string? value1, string? value2) => string.Compare(value1, value2, StringComparison.InvariantCultureIgnoreCase) == 0;
+
+        /// <summary>
         /// Parses a string value into specified data type and returns null if conversion fails.
         /// </summary>
         /// <typeparam name="T">The data type to parse into.</typeparam>

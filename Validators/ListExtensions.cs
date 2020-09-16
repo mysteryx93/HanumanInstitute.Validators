@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,6 +31,19 @@ namespace HanumanInstitute.Validators
                     list.Add(item);
                 }
             }
+        }
+
+        /// <summary>
+        /// Returns a ReadOnlyCollection wrapper for the current collection.
+        /// </summary>
+        /// <typeparam name="T">The type of list items.</typeparam>
+        /// <param name="list">The list to return as read-only.</param>
+        /// <returns>An object that acts as a read-only wrapper around the current IList.</returns>
+        public static IList<T> AsReadOnly<T>(this IList<T> list)
+        {
+            list.CheckNotNull(nameof(list));
+
+            return new ReadOnlyCollection<T>(list);
         }
 
         /// <summary>
