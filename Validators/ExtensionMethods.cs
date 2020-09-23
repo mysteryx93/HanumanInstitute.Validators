@@ -75,5 +75,40 @@ namespace HanumanInstitute.Validators
             }
             return value;
         }
+
+        /// <summary>
+        /// Returns whether given type is assignable from specified generic base type.
+        /// </summary>
+        /// <param name="givenType">The type to validate.</param>
+        /// <param name="genericType">The generic base type to check against.</param>
+        /// <returns>True if givenType can be converted to genericType, otherwise False.</returns>
+        public static bool IsAssignableFromGeneric(this Type givenType, Type genericType)
+        {
+            givenType.CheckNotNull(nameof(givenType));
+            genericType.CheckNotNull(nameof(genericType));
+
+            var interfaceTypes = givenType.GetInterfaces();
+
+            foreach (var it in interfaceTypes)
+            {
+                if (it.IsGenericType && it.GetGenericTypeDefinition() == genericType)
+                {
+                    return true;
+                }
+            }
+
+            if (givenType.IsGenericType && givenType.GetGenericTypeDefinition() == genericType)
+            {
+                return true;
+            }
+
+            var baseType = givenType.BaseType;
+            if (baseType == null)
+            {
+                return false;
+            }
+
+            return IsAssignableFromGeneric(baseType, genericType);
+        }
     }
 }

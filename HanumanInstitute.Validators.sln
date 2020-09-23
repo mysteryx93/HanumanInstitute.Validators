@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HanumanInstitute.Validators.Tests", "Validators.Tests\HanumanInstitute.Validators.Tests.csproj", "{345DEBE4-210A-4809-A2A0-E3F7D41CCF73}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{0C1114BA-8AE1-40D1-826C-0E913D121855}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C1114BA-8AE1-40D1-826C-0E913D121855}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C1114BA-8AE1-40D1-826C-0E913D121855}.Release|Any CPU.Build.0 = Release|Any CPU
+		{345DEBE4-210A-4809-A2A0-E3F7D41CCF73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{345DEBE4-210A-4809-A2A0-E3F7D41CCF73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{345DEBE4-210A-4809-A2A0-E3F7D41CCF73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{345DEBE4-210A-4809-A2A0-E3F7D41CCF73}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

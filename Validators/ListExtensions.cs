@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -21,6 +22,29 @@ namespace HanumanInstitute.Validators
             items.CheckNotNull(nameof(items));
 
             if (list is List<T> castedList)
+            {
+                castedList.AddRange(items);
+            }
+            else
+            {
+                foreach (var item in items)
+                {
+                    list.Add(item);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Adds the elements of the specified collection to the end of the IList.
+        /// </summary>
+        /// <param name="list">The list to add elements to.</param>
+        /// <param name="items">The collection whose elements should be added to the end of the IList.</param>
+        public static void AddRange(this IList list, IEnumerable items)
+        {
+            list.CheckNotNull(nameof(list));
+            items.CheckNotNull(nameof(items));
+
+            if (list is ArrayList castedList)
             {
                 castedList.AddRange(items);
             }
