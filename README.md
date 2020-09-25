@@ -1,8 +1,6 @@
 # HanumanInstitute.Validators
 Common validator functions and other extension methods that are used all the time.
 
-I was getting tired of copy/pasting these classes into every single project and dealing with version differences, so I moved them into a public assembly.
-
 The main goal of this assembly is to add helper extension methods to validate arguments.
 
 Tired of repeating this in every method?
