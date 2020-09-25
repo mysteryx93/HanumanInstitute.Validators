@@ -88,6 +88,7 @@ Runs a task on each item of IEnumerable with up to specified parallel tasks. Cal
 
 Runs a task on each item of IEnumerable with up to specified parallel tasks. It will return an IList containing the result of each operation while preserving the order.
 
+    var result = await list.ForEachOrderedAsync(x => DoSomeWorkAsync(x));
 
 ## String Extensions
 
