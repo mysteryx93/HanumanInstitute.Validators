@@ -75,22 +75,22 @@ namespace HanumanInstitute.Validators
         /// </summary>
         /// <typeparam name="TSource">The type of the source list.</typeparam>
         /// <param name="source">The source list to iterate.</param>
-        /// <param name="taskSelector">The operation to evaluate for each item.</param>
-        /// <param name="resultProcessor">Callback after each item is evaluated.</param>
+        /// <param name="task">The operation to evaluate for each item.</param>
+        /// <param name="callback">Callback after each item is evaluated.</param>
         /// <param name="maxParallel">The maximum amount of tasks to run in parallel.</param>
         public static async Task ForEachAsync<TSource>(
-            this IEnumerable<TSource> source, Func<TSource, Task> taskSelector,
-            Action<TSource>? resultProcessor = null, int maxParallel = 10)
+            this IEnumerable<TSource> source, Func<TSource, Task> task,
+            Action<TSource>? callback = null, int maxParallel = 10)
         {
             source.CheckNotNull(nameof(source));
-            taskSelector.CheckNotNull(nameof(taskSelector));
+            task.CheckNotNull(nameof(task));
             maxParallel.CheckRange(nameof(maxParallel), min: 1);
 
             using (var oneAtATime = new SemaphoreSlim(maxParallel, maxParallel))
             {
                 await Task.WhenAll(
                     from item in source
-                    select ProcessAsync(item, taskSelector, resultProcessor, oneAtATime)).ConfigureAwait(false);
+                    select ProcessAsync(item, task, callback, oneAtATime)).ConfigureAwait(false);
             }
 
             static async Task ProcessAsync(
@@ -117,22 +117,22 @@ namespace HanumanInstitute.Validators
         /// <typeparam name="TSource">The type of the source list.</typeparam>
         /// <typeparam name="TResult">The result of the operation run on each item.</typeparam>
         /// <param name="source">The source list to iterate.</param>
-        /// <param name="taskSelector">The operation to evaluate for each item.</param>
-        /// <param name="resultProcessor">Callback after each item is evaluated.</param>
+        /// <param name="task">The operation to evaluate for each item.</param>
+        /// <param name="callback">Callback after each item is evaluated.</param>
         /// <param name="maxParallel">The maximum amount of tasks to run in parallel.</param>
         public static async Task ForEachAsync<TSource, TResult>(
-            this IEnumerable<TSource> source, Func<TSource, Task<TResult>> taskSelector,
-            Action<TSource, TResult>? resultProcessor = null, int maxParallel = 10)
+            this IEnumerable<TSource> source, Func<TSource, Task<TResult>> task,
+            Action<TSource, TResult>? callback = null, int maxParallel = 10)
         {
             source.CheckNotNull(nameof(source));
-            taskSelector.CheckNotNull(nameof(taskSelector));
+            task.CheckNotNull(nameof(task));
             maxParallel.CheckRange(nameof(maxParallel), min: 1);
 
             using (var oneAtATime = new SemaphoreSlim(maxParallel, maxParallel))
             {
                 await Task.WhenAll(
                     from item in source
-                    select ProcessAsync(item, taskSelector, resultProcessor, oneAtATime)).ConfigureAwait(false);
+                    select ProcessAsync(item, task, callback, oneAtATime)).ConfigureAwait(false);
             }
 
             static async Task ProcessAsync(
@@ -159,14 +159,14 @@ namespace HanumanInstitute.Validators
         /// <typeparam name="TSource">The type of the source list.</typeparam>
         /// <typeparam name="TResult">The result of the operation run on each item.</typeparam>
         /// <param name="source">The source list to iterate.</param>
-        /// <param name="taskSelector">The operation to evaluate for each item.</param>
+        /// <param name="task">The operation to evaluate for each item.</param>
         /// <param name="maxParallel">The maximum amount of tasks to run in parallel.</param>
         /// <returns>The list of results in the same order as source.</returns>
         public static async Task<IList<TResult>> ForEachOrderedAsync<TSource, TResult>(
-            this IList<TSource> source, Func<TSource, Task<TResult>> taskSelector, int maxParallel = 10)
+            this IList<TSource> source, Func<TSource, Task<TResult>> task, int maxParallel = 10)
         {
             source.CheckNotNull(nameof(source));
-            taskSelector.CheckNotNull(nameof(taskSelector));
+            task.CheckNotNull(nameof(task));
             maxParallel.CheckRange(nameof(maxParallel), min: 1);
 
             using (var oneAtATime = new SemaphoreSlim(maxParallel, maxParallel))
@@ -175,7 +175,7 @@ namespace HanumanInstitute.Validators
                 var taskList = new Task[source.Count];
                 for (var i = 0; i < source.Count; i++)
                 {
-                    taskList[i] = ProcessOrderedAsync(source[i], taskSelector, oneAtATime, i, (src, res, index) =>
+                    taskList[i] = ProcessOrderedAsync(source[i], task, oneAtATime, i, (src, res, index) =>
                     {
                         indexList[index] = res;
                     });
