@@ -1,7 +1,7 @@
 # HanumanInstitute.Validators
 Common validator functions and other extension methods that are used all the time.
 
-The main goal of this assembly is to add helper extension methods to validate arguments.
+**The main goal of this assembly is to add helper extension methods to validate arguments.**
 
 Tired of repeating this in every method?
 
