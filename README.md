@@ -3,11 +3,11 @@ Common validator functions and other extension methods that are used all the tim
 
 I was getting tired of copy/pasting these classes into every single project and dealing with version differences, so I moved them into a public assembly.
 
-The main feature of this assembly is to add helper extension methods to validate arguments.
+The main goal of this assembly is to add helper extension methods to validate arguments.
 
 Tired of repeating this in every method?
 
-    if (value == null) { throw NullReferenceException(nameof(value)); }
+    if (value == null) { throw new NullReferenceException(nameof(value)); }
     _field = value;
 
 Now you can instead write this!
