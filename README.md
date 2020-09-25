@@ -12,6 +12,12 @@ Now you can instead write this!
 
     _field = value.CheckNotNull(nameof(value));
 
+Other super useful functions
+
+    value.CheckRange(nameof(value), min: 0);
+    var msg = "Value {0} is invalid.".FormatInvariant(value);
+    var result = await list.ForEachOrderedAsync(x => DoSomeWorkAsync(x));
+
 ## Setup
 
 Add NuGet package HanumanInstitute.Validators
@@ -63,3 +69,67 @@ Checks whether value is within valid range. It throws short and meaningful excep
 
 Returns whether value is within valid range.
 
+
+## List Extensions
+
+#### ICollection/IList.AddRange()
+
+[List.AddRange](https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.addrange) is notably missing from standard IList interface!! Fixed.
+
+#### IList.AsReadOnly()
+
+[List.AsReadOnly](https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.asreadonly) is also missing from standard IList interface.
+
+#### IEnumerable.ForEachAsync(task, callback, maxParallel = 10)
+
+Runs a task on each item of IEnumerable with up to specified parallel tasks. Callback will be invoked once each task is completed, in no particular order.
+
+#### IEnumerable.ForEachOrderedAsync(task, maxParallel = 10)
+
+Runs a task on each item of IEnumerable with up to specified parallel tasks. It will return an IList containing the result of each operation while preserving the order.
+
+
+## String Extensions
+
+#### Object.ToStringInvariant()
+
+Converts a value to string using InvariantCulture.
+
+#### String.HasValue()
+
+Returns whether the string contains a value. It is the equivalent of !string.IsNullOrEmpty(value).
+
+#### String.Default(defaultValue)
+
+Returns specified default value if the value is null or empty.
+
+#### String.FormatInvariant(args)
+
+Formats a string using invariant culture. This is a shortcut for string.format(CultureInfo.InvariantCulture, ...)
+
+#### String.EqualsInvariant(value)
+
+Returns whether the two string values are equal, using InvariantCultureIgnoreCase. Note that extension methods work on null values.
+
+#### String.Parse&lt;T>()
+
+Parses a string value into specified data type and returns null if conversion fails.
+
+
+## Other Extensions
+
+#### Enum.GetFlags()
+
+Returns a list of all enumeration flags that are contained in an enumeration value.
+
+#### ExtensionMethods.CopyAllFields(source, target)
+
+Copies all fields from one instance of a class to another.
+
+#### IComparable.Clamp(min, max)
+
+Forces a value to be within specified range.
+
+#### Type.IsAssignableFromGeneric(genericType)
+
+Returns whether given type is assignable from specified generic base type.
