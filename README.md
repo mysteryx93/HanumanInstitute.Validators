@@ -11,7 +11,20 @@ Tired of repeating this in every method?
 Now you can instead write this!
 
     _field = value.CheckNotNull(nameof(value));
-    
+
+## Setup
+
+Add NuGet package HanumanInstitute.Validators
+
+(optional) Add .editorconfig file to every project. This will tell FxCop to stop null warnings after calling these methods.
+
+    [*.cs]
+    # EditorConfig is awesome: https://EditorConfig.org
+    dotnet_code_quality.CA1062.null_check_validation_methods = CheckNotNull|CheckNotNullOrEmpty|CheckAssignableFrom|CheckDerivesFrom
+
+To use in a file
+
+    using HanumanInstitute.Validators;
 
 ## Validation Methods
 
