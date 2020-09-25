@@ -16,7 +16,7 @@ namespace HanumanInstitute.Validators
         /// <typeparam name="T">The type of list items.</typeparam>
         /// <param name="list">The list to add elements to.</param>
         /// <param name="items">The collection whose elements should be added to the end of the IList.</param>
-        public static void AddRange<T>(this IList<T> list, IEnumerable<T> items)
+        public static void AddRange<T>(this ICollection<T> list, IEnumerable<T> items)
         {
             list.CheckNotNull(nameof(list));
             items.CheckNotNull(nameof(items));
