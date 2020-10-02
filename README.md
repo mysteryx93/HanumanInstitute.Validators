@@ -20,7 +20,7 @@ Other super useful functions
 
 ## Setup
 
-Add NuGet package HanumanInstitute.Validators
+Add NuGet package [HanumanInstitute.Validators](https://www.nuget.org/packages/HanumanInstitute.Validators/)
 
 (optional) Add .editorconfig file to every project. This will tell FxCop to stop null warnings after calling these methods.
 
