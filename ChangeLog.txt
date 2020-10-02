@@ -1,3 +1,6 @@
+v1.0.3       2020-10-02
+- Preconditions now correctly work on nullable types
+
 v1.0.2       2020-10-02
 - ForEachOrderedAsync now works on any IEnumerable
 

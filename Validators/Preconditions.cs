@@ -31,14 +31,14 @@ namespace HanumanInstitute.Validators
         /// </summary>
         /// <param name="value">The value to validate.</param>
         /// <param name="name">The name of the parameter.</param>
-        public static string CheckNotNullOrEmpty(this string value, string name)
+        public static string CheckNotNullOrEmpty(this string? value, string name)
         {
             value.CheckNotNull(name);
             if (string.IsNullOrEmpty(value))
             {
                 ThrowArgumentNullOrEmpty(name);
             }
-            return value;
+            return value!;
         }
 
         /// <summary>
@@ -46,15 +46,15 @@ namespace HanumanInstitute.Validators
         /// </summary>
         /// <param name="value">The value to validate.</param>
         /// <param name="name">The name of the parameter.</param>
-        public static IEnumerable CheckNotNullOrEmpty(this IEnumerable value, string name)
+        public static IEnumerable CheckNotNullOrEmpty(this IEnumerable? value, string name)
         {
             value.CheckNotNull(name);
 
-            if (!value.GetEnumerator().MoveNext())
+            if (!value!.GetEnumerator().MoveNext())
             {
                 ThrowArgumentNullOrEmpty(name);
             }
-            return value;
+            return value!;
         }
 
         /// <summary>
@@ -62,14 +62,14 @@ namespace HanumanInstitute.Validators
         /// </summary>
         /// <param name="value">The value to validate.</param>
         /// <param name="name">The name of the parameter.</param>
-        public static IEnumerable<T> CheckNotNullOrEmpty<T>(this IEnumerable<T> value, string name)
+        public static IEnumerable<T> CheckNotNullOrEmpty<T>(this IEnumerable<T>? value, string name)
         {
             value.CheckNotNull(name);
             if (!value.Any())
             {
                 ThrowArgumentNullOrEmpty(name);
             }
-            return value;
+            return value!;
         }
 
         /// <summary>
@@ -79,12 +79,12 @@ namespace HanumanInstitute.Validators
         /// <param name="baseType">The base type that value type must derive from.</param>
         /// <param name="name">The name of the parameter.</param>
         /// <returns></returns>
-        public static Type CheckAssignableFrom(this Type value, Type baseType, string name)
+        public static Type CheckAssignableFrom(this Type? value, Type baseType, string name)
         {
             value.CheckNotNull(name);
             baseType.CheckNotNull(nameof(baseType));
 
-            if (!value.IsAssignableFrom(baseType))
+            if (!value!.IsAssignableFrom(baseType))
             {
                 throw new ArgumentException(Res.TypeMustBeAssignableFromBase.FormatInvariant(name, value.Name, baseType.Name), name);
             }
@@ -98,12 +98,12 @@ namespace HanumanInstitute.Validators
         /// <param name="baseType">The base type that value type must derive from.</param>
         /// <param name="name">The name of the parameter.</param>
         /// <returns></returns>
-        public static Type CheckDerivesFrom(this Type value, Type baseType, string name)
+        public static Type CheckDerivesFrom(this Type? value, Type baseType, string name)
         {
             value.CheckNotNull(name);
             baseType.CheckNotNull(nameof(baseType));
 
-            if (!value.IsSubclassOf(baseType))
+            if (!value!.IsSubclassOf(baseType))
             {
                 throw new ArgumentException(Res.TypeMustDeriveFromBase.FormatInvariant(name, value.Name, baseType.Name), name);
             }
