@@ -1,0 +1,3 @@
+v1.1
+- String.Default() now takes nullable string
+- String.EqualsInvariant() now works on any object and calls ToStringInvariant

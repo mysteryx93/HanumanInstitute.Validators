@@ -28,7 +28,7 @@ namespace HanumanInstitute.Validators
         /// <param name="value">The value to evaluate.</param>
         /// <param name="defaultValue">The default value if value is null or empty.</param>
         /// <returns>The new value.</returns>
-        public static string Default(this string value, string defaultValue) => string.IsNullOrEmpty(value) ? defaultValue : value;
+        public static string Default(this string? value, string defaultValue) => string.IsNullOrEmpty(value) ? defaultValue : value!;
 
         /// <summary>
         /// Formats a string using invariant culture. This is a shortcut for string.format(CultureInfo.InvariantCulture, ...)
@@ -45,6 +45,14 @@ namespace HanumanInstitute.Validators
         /// <param name="value2">The value to compare to.</param>
         /// <returns>Whether the two values are equal.</returns>
         public static bool EqualsInvariant(this string? value1, string? value2) => string.Compare(value1, value2, StringComparison.InvariantCultureIgnoreCase) == 0;
+
+        /// <summary>
+        /// Returns whether the two string values are equal, using InvariantCultureIgnoreCase. Note that extension methods work on null values.
+        /// </summary>
+        /// <param name="value1">The first value to compare.</param>
+        /// <param name="value2">The object to compare to, that will be converted to string using InvariantCulture.</param>
+        /// <returns>Whether the two values are equal.</returns>
+        public static bool EqualsInvariant(this string? value1, object? value2) => string.Compare(value1, value2?.ToStringInvariant(), StringComparison.InvariantCultureIgnoreCase) == 0;
 
         /// <summary>
         /// Parses a string value into specified data type and returns null if conversion fails.
