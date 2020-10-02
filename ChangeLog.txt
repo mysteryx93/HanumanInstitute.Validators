@@ -1,3 +1,6 @@
+v1.0.2       2020-10-02
+- ForEachOrderedAsync now works on any IEnumerable
+
 v1.0.1       2020-10-02
 - String.Default() now works on nullable strings
 - String.EqualsInvariant() now works on any object and calls ToStringInvariant

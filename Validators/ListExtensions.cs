@@ -163,7 +163,7 @@ namespace HanumanInstitute.Validators
         /// <param name="maxParallel">The maximum amount of tasks to run in parallel.</param>
         /// <returns>The list of results in the same order as source.</returns>
         public static async Task<IList<TResult>> ForEachOrderedAsync<TSource, TResult>(
-            this IList<TSource> source, Func<TSource, Task<TResult>> task, int maxParallel = 10)
+            this IEnumerable<TSource> source, Func<TSource, Task<TResult>> task, int maxParallel = 10)
         {
             source.CheckNotNull(nameof(source));
             task.CheckNotNull(nameof(task));
@@ -171,19 +171,22 @@ namespace HanumanInstitute.Validators
 
             using (var oneAtATime = new SemaphoreSlim(maxParallel, maxParallel))
             {
-                var indexList = new TResult[source.Count];
-                var taskList = new Task[source.Count];
-                for (var i = 0; i < source.Count; i++)
+                var count = source.Count();
+                var indexList = new TResult[count];
+                var taskList = new Task[count];
+                var i = 0;
+                foreach (var item in source)
                 {
-                    taskList[i] = ProcessOrderedAsync(source[i], task, oneAtATime, i, (src, res, index) =>
+                    taskList[i] = ProcessOrderedAsync(item, task, oneAtATime, i, (src, res, index) =>
                     {
                         indexList[index] = res;
                     });
+                    i++;
                 }
                 await Task.WhenAll(taskList).ConfigureAwait(false);
 
-                var result = new List<TResult>(source.Count);
-                for (var i = 0; i < source.Count; i++)
+                var result = new List<TResult>(count);
+                for (i = 0; i < count; i++)
                 {
                     result.Add(indexList[i]);
                 }
