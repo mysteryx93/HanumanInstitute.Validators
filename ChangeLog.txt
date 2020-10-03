@@ -1,3 +1,6 @@
+v1.0.4       2020-10-02
+- XML code documentation was missing! Fixed.
+
 v1.0.3       2020-10-02
 - Preconditions now correctly work on nullable types
 

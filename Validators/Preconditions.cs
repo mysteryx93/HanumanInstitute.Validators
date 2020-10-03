@@ -78,7 +78,6 @@ namespace HanumanInstitute.Validators
         /// <param name="value">The Type to validate.</param>
         /// <param name="baseType">The base type that value type must derive from.</param>
         /// <param name="name">The name of the parameter.</param>
-        /// <returns></returns>
         public static Type CheckAssignableFrom(this Type? value, Type baseType, string name)
         {
             value.CheckNotNull(name);
@@ -97,7 +96,6 @@ namespace HanumanInstitute.Validators
         /// <param name="value">The Type to validate.</param>
         /// <param name="baseType">The base type that value type must derive from.</param>
         /// <param name="name">The name of the parameter.</param>
-        /// <returns></returns>
         public static Type CheckDerivesFrom(this Type? value, Type baseType, string name)
         {
             value.CheckNotNull(name);

@@ -1,0 +1,381 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HanumanInstitute.Validators</name>
+    </assembly>
+    <members>
+        <member name="M:HanumanInstitute.Validators.ExtensionMethods.GetFlags``1(``0)">
+            <summary>
+            Returns a list of all enumeration flags that are contained in a value.
+            </summary>
+            <typeparam name="T">The enumeration type.</typeparam>
+            <param name="value">The value to return the individual flags for.</param>
+            <returns>A list of single-byte enumeration flags.</returns>
+        </member>
+        <member name="M:HanumanInstitute.Validators.ExtensionMethods.CopyAllFields``1(``0,``0)">
+            <summary>
+            Copies all fields from one instance of a class to another.
+            </summary>
+            <typeparam name="T">The type of class to copy.</typeparam>
+            <param name="source">The class to copy.</param>
+            <param name="target">The class to copy to.</param>
+        </member>
+        <member name="M:HanumanInstitute.Validators.ExtensionMethods.Clamp``1(``0,``0,``0)">
+            <summary>
+            Forces a value to be within specified range.
+            </summary>
+            <typeparam name="T">The type of value to clamp.</typeparam>
+            <param name="value">The value to clamp.</param>
+            <param name="min">The lowest value that can be returned.</param>
+            <param name="max">The highest value that can be returned.</param>
+            <returns>The clamped value.</returns>
+        </member>
+        <member name="M:HanumanInstitute.Validators.ExtensionMethods.IsAssignableFromGeneric(System.Type,System.Type)">
+            <summary>
+            Returns whether given type is assignable from specified generic base type.
+            </summary>
+            <param name="givenType">The type to validate.</param>
+            <param name="genericType">The generic base type to check against.</param>
+            <returns>True if givenType can be converted to genericType, otherwise False.</returns>
+        </member>
+        <member name="M:HanumanInstitute.Validators.ListExtensions.AddRange``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Adds the elements of the specified collection to the end of the IList.
+            </summary>
+            <typeparam name="T">The type of list items.</typeparam>
+            <param name="list">The list to add elements to.</param>
+            <param name="items">The collection whose elements should be added to the end of the IList.</param>
+        </member>
+        <member name="M:HanumanInstitute.Validators.ListExtensions.AddRange(System.Collections.IList,System.Collections.IEnumerable)">
+            <summary>
+            Adds the elements of the specified collection to the end of the IList.
+            </summary>
+            <param name="list">The list to add elements to.</param>
+            <param name="items">The collection whose elements should be added to the end of the IList.</param>
+        </member>
+        <member name="M:HanumanInstitute.Validators.ListExtensions.AsReadOnly``1(System.Collections.Generic.IList{``0})">
+            <summary>
+            Returns a ReadOnlyCollection wrapper for the current collection.
+            </summary>
+            <typeparam name="T">The type of list items.</typeparam>
+            <param name="list">The list to return as read-only.</param>
+            <returns>An object that acts as a read-only wrapper around the current IList.</returns>
+        </member>
+        <member name="M:HanumanInstitute.Validators.ListExtensions.ForEachAsync``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Threading.Tasks.Task},System.Action{``0},System.Int32)">
+            <summary>
+            Processes an enumeration in parallel in an awaitable way.
+            </summary>
+            <typeparam name="TSource">The type of the source list.</typeparam>
+            <param name="source">The source list to iterate.</param>
+            <param name="task">The operation to evaluate for each item.</param>
+            <param name="callback">Callback after each item is evaluated.</param>
+            <param name="maxParallel">The maximum amount of tasks to run in parallel.</param>
+        </member>
+        <member name="M:HanumanInstitute.Validators.ListExtensions.ForEachAsync``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Threading.Tasks.Task{``1}},System.Action{``0,``1},System.Int32)">
+            <summary>
+            Processes an enumeration in parallel in an awaitable way.
+            </summary>
+            <typeparam name="TSource">The type of the source list.</typeparam>
+            <typeparam name="TResult">The result of the operation run on each item.</typeparam>
+            <param name="source">The source list to iterate.</param>
+            <param name="task">The operation to evaluate for each item.</param>
+            <param name="callback">Callback after each item is evaluated.</param>
+            <param name="maxParallel">The maximum amount of tasks to run in parallel.</param>
+        </member>
+        <member name="M:HanumanInstitute.Validators.ListExtensions.ForEachOrderedAsync``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Threading.Tasks.Task{``1}},System.Int32)">
+            <summary>
+            Processes a list in parallel in an awaitable way and returns the output in the same order.
+            </summary>
+            <typeparam name="TSource">The type of the source list.</typeparam>
+            <typeparam name="TResult">The result of the operation run on each item.</typeparam>
+            <param name="source">The source list to iterate.</param>
+            <param name="task">The operation to evaluate for each item.</param>
+            <param name="maxParallel">The maximum amount of tasks to run in parallel.</param>
+            <returns>The list of results in the same order as source.</returns>
+        </member>
+        <member name="T:HanumanInstitute.Validators.Preconditions">
+            <summary>
+            Provides helper methods to validate parameters.
+            </summary>
+        </member>
+        <member name="M:HanumanInstitute.Validators.Preconditions.CheckNotNull``1(``0,System.String)">
+            <summary>
+            Validates whether specific value is not null, and throws an exception if it is null.
+            </summary>
+            <param name="value">The value to validate.</param>
+            <param name="name">The name of the parameter.</param>
+        </member>
+        <member name="M:HanumanInstitute.Validators.Preconditions.CheckNotNullOrEmpty(System.String,System.String)">
+            <summary>
+            Validates whether specific value is not null or empty, and throws an exception if it is null or empty.
+            </summary>
+            <param name="value">The value to validate.</param>
+            <param name="name">The name of the parameter.</param>
+        </member>
+        <member name="M:HanumanInstitute.Validators.Preconditions.CheckNotNullOrEmpty(System.Collections.IEnumerable,System.String)">
+            <summary>
+            Validates whether specific list is not null or empty, and throws an exception if it is null or empty.
+            </summary>
+            <param name="value">The value to validate.</param>
+            <param name="name">The name of the parameter.</param>
+        </member>
+        <member name="M:HanumanInstitute.Validators.Preconditions.CheckNotNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            Validates whether specific list is not null or empty, and throws an exception if it is null or empty.
+            </summary>
+            <param name="value">The value to validate.</param>
+            <param name="name">The name of the parameter.</param>
+        </member>
+        <member name="M:HanumanInstitute.Validators.Preconditions.CheckAssignableFrom(System.Type,System.Type,System.String)">
+            <summary>
+            Validates whether specified type is assignable from specific base class.
+            </summary>
+            <param name="value">The Type to validate.</param>
+            <param name="baseType">The base type that value type must derive from.</param>
+            <param name="name">The name of the parameter.</param>
+        </member>
+        <member name="M:HanumanInstitute.Validators.Preconditions.CheckDerivesFrom(System.Type,System.Type,System.String)">
+            <summary>
+            Validates whether specified type derives from specific base class.
+            </summary>
+            <param name="value">The Type to validate.</param>
+            <param name="baseType">The base type that value type must derive from.</param>
+            <param name="name">The name of the parameter.</param>
+        </member>
+        <member name="M:HanumanInstitute.Validators.Preconditions.CheckEnumValid``1(``0,System.String)">
+            <summary>
+            Validates whether an enumeration value is valid, since it can contain any integer value.
+            If the enumeration has FlagsAttribute, it also checks whether value is a combination of valid values.
+            </summary>
+            <typeparam name="T">The type of enumeration.</typeparam>
+            <param name="value">The value to validate.</param>
+            <param name="name">The name of the property.</param>
+        </member>
+        <member name="M:HanumanInstitute.Validators.Preconditions.IsInRange``1(``0,System.Nullable{``0},System.Boolean,System.Nullable{``0},System.Boolean)">
+            <summary>
+            Returns whether specified value is in valid range.
+            </summary>
+            <typeparam name="T">The type of data to validate.</typeparam>
+            <param name="value">The value to validate.</param>
+            <param name="min">The minimum valid value.</param>
+            <param name="minInclusive">Whether the minimum value is valid.</param>
+            <param name="max">The maximum valid value.</param>
+            <param name="maxInclusive">Whether the maximum value is valid.</param>
+            <returns>Whether the value is within range.</returns>
+        </member>
+        <member name="M:HanumanInstitute.Validators.Preconditions.CheckRange``1(``0,System.String,System.Nullable{``0},System.Boolean,System.Nullable{``0},System.Boolean)">
+            <summary>
+            Validates whether specified value is in valid range, and throws an exception if out of range.
+            </summary>
+            <typeparam name="T">The type of data to validate.</typeparam>
+            <param name="value">The value to validate.</param>
+            <param name="name">The name of the parameter.</param>
+            <param name="min">The minimum valid value.</param>
+            <param name="minInclusive">Whether the minimum value is valid.</param>
+            <param name="max">The maximum valid value.</param>
+            <param name="maxInclusive">Whether the maximum value is valid.</param>
+            <returns>The value if valid.</returns>
+        </member>
+        <member name="M:HanumanInstitute.Validators.Preconditions.ThrowArgumentNullOrEmpty(System.String)">
+            <summary>
+            Throws an exception of type ArgumentException saying an argument is null or empty.
+            </summary>
+            <param name="name">The name of the parameter.</param>
+        </member>
+        <member name="T:HanumanInstitute.Validators.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:HanumanInstitute.Validators.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:HanumanInstitute.Validators.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:HanumanInstitute.Validators.Properties.Resources.TypeMustBeAssignableFromBase">
+            <summary>
+              Looks up a localized string similar to {0} of type &apos;{1}&apos; must be assignable from type &apos;{2}&apos;..
+            </summary>
+        </member>
+        <member name="P:HanumanInstitute.Validators.Properties.Resources.TypeMustDeriveFromBase">
+            <summary>
+              Looks up a localized string similar to {0} of type &apos;{1}&apos; must derive from type &apos;{2}&apos;..
+            </summary>
+        </member>
+        <member name="P:HanumanInstitute.Validators.Properties.Resources.ValueEmpty">
+            <summary>
+              Looks up a localized string similar to {0} cannot be empty..
+            </summary>
+        </member>
+        <member name="P:HanumanInstitute.Validators.Properties.Resources.ValueInvalidEnum">
+            <summary>
+              Looks up a localized string similar to {0} is not valid for parameter {1} of type {2}..
+            </summary>
+        </member>
+        <member name="P:HanumanInstitute.Validators.Properties.Resources.ValueMustBeNullOrPositive">
+            <summary>
+              Looks up a localized string similar to {0} must be null or greater than 0..
+            </summary>
+        </member>
+        <member name="P:HanumanInstitute.Validators.Properties.Resources.ValueRange">
+            <summary>
+              Looks up a localized string similar to {0} must be {1}..
+            </summary>
+        </member>
+        <member name="P:HanumanInstitute.Validators.Properties.Resources.ValueRangeAnd">
+            <summary>
+              Looks up a localized string similar to {0} must be {1} and {2}..
+            </summary>
+        </member>
+        <member name="P:HanumanInstitute.Validators.Properties.Resources.ValueRangeBetween">
+            <summary>
+              Looks up a localized string similar to {0} must be between {1} and {2}..
+            </summary>
+        </member>
+        <member name="P:HanumanInstitute.Validators.Properties.Resources.ValueRangeGreaterThan">
+            <summary>
+              Looks up a localized string similar to greater than {0}.
+            </summary>
+        </member>
+        <member name="P:HanumanInstitute.Validators.Properties.Resources.ValueRangeGreaterThanInclusive">
+            <summary>
+              Looks up a localized string similar to greater than or equal to {0}.
+            </summary>
+        </member>
+        <member name="P:HanumanInstitute.Validators.Properties.Resources.ValueRangeLessThan">
+            <summary>
+              Looks up a localized string similar to less than {0}.
+            </summary>
+        </member>
+        <member name="P:HanumanInstitute.Validators.Properties.Resources.ValueRangeLessThanInclusive">
+            <summary>
+              Looks up a localized string similar to less than or equal to {0}.
+            </summary>
+        </member>
+        <member name="M:HanumanInstitute.Validators.StringExtensions.ToStringInvariant``1(``0)">
+            <summary>
+            Converts a value to string using InvariantCulture.
+            </summary>
+            <typeparam name="T">The type of object to convert.</typeparam>
+            <param name="value">The object to convert to string.</param>
+            <returns>The invariant string representation of the object.</returns>
+        </member>
+        <member name="M:HanumanInstitute.Validators.StringExtensions.HasValue(System.String)">
+            <summary>
+            Returns whether the string contains a value. It is the equivalent of !string.IsNullOrEmpty(value).
+            </summary>
+            <param name="value">The string to evaluate.</param>
+            <returns>Whether the string is not null or empty.</returns>
+        </member>
+        <member name="M:HanumanInstitute.Validators.StringExtensions.Default(System.String,System.String)">
+            <summary>
+            Returns specified default value if the value is null or empty.
+            </summary>
+            <param name="value">The value to evaluate.</param>
+            <param name="defaultValue">The default value if value is null or empty.</param>
+            <returns>The new value.</returns>
+        </member>
+        <member name="M:HanumanInstitute.Validators.StringExtensions.FormatInvariant(System.String,System.Object[])">
+            <summary>
+            Formats a string using invariant culture. This is a shortcut for string.format(CultureInfo.InvariantCulture, ...)
+            </summary>
+            <param name="format">A composite format string.</param>
+            <param name="args">An object array that contains zero or more objects to format.</param>
+            <returns>The formatted string.</returns>
+        </member>
+        <member name="M:HanumanInstitute.Validators.StringExtensions.EqualsInvariant(System.String,System.String)">
+            <summary>
+            Returns whether the two string values are equal, using InvariantCultureIgnoreCase. Note that extension methods work on null values.
+            </summary>
+            <param name="value1">The first value to compare.</param>
+            <param name="value2">The value to compare to.</param>
+            <returns>Whether the two values are equal.</returns>
+        </member>
+        <member name="M:HanumanInstitute.Validators.StringExtensions.EqualsInvariant(System.String,System.Object)">
+            <summary>
+            Returns whether the two string values are equal, using InvariantCultureIgnoreCase. Note that extension methods work on null values.
+            </summary>
+            <param name="value1">The first value to compare.</param>
+            <param name="value2">The object to compare to, that will be converted to string using InvariantCulture.</param>
+            <returns>Whether the two values are equal.</returns>
+        </member>
+        <member name="M:HanumanInstitute.Validators.StringExtensions.Parse``1(System.String)">
+            <summary>
+            Parses a string value into specified data type and returns null if conversion fails.
+            </summary>
+            <typeparam name="T">The data type to parse into.</typeparam>
+            <param name="input">The string value to parse.</param>
+            <returns>The parsed value, or null if parsring failed.</returns>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.AllowNullAttribute">
+            <summary>Specifies that null is allowed as an input even if the corresponding type disallows it.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.DisallowNullAttribute">
+            <summary>Specifies that null is disallowed as an input even if the corresponding type allows it.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.MaybeNullAttribute">
+            <summary>Specifies that an output may be null even if the corresponding type disallows it.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.NotNullAttribute">
+            <summary>Specifies that an output will not be null even if the corresponding type allows it.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.MaybeNullWhenAttribute">
+            <summary>Specifies that when a method returns <see cref="P:System.Diagnostics.CodeAnalysis.MaybeNullWhenAttribute.ReturnValue"/>, the parameter may be null even if the corresponding type disallows it.</summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.MaybeNullWhenAttribute.#ctor(System.Boolean)">
+            <summary>Initializes the attribute with the specified return value condition.</summary>
+            <param name="returnValue">
+            The return value condition. If the method returns this value, the associated parameter may be null.
+            </param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.MaybeNullWhenAttribute.ReturnValue">
+            <summary>Gets the return value condition.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.NotNullWhenAttribute">
+            <summary>Specifies that when a method returns <see cref="P:System.Diagnostics.CodeAnalysis.NotNullWhenAttribute.ReturnValue"/>, the parameter will not be null even if the corresponding type allows it.</summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.NotNullWhenAttribute.#ctor(System.Boolean)">
+            <summary>Initializes the attribute with the specified return value condition.</summary>
+            <param name="returnValue">
+            The return value condition. If the method returns this value, the associated parameter will not be null.
+            </param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.NotNullWhenAttribute.ReturnValue">
+            <summary>Gets the return value condition.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.NotNullIfNotNullAttribute">
+            <summary>Specifies that the output will be non-null if the named parameter is non-null.</summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.NotNullIfNotNullAttribute.#ctor(System.String)">
+            <summary>Initializes the attribute with the associated parameter name.</summary>
+            <param name="parameterName">
+            The associated parameter name.  The output will be non-null if the argument to the parameter specified is non-null.
+            </param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.NotNullIfNotNullAttribute.ParameterName">
+            <summary>Gets the associated parameter name.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute">
+            <summary>Applied to a method that will never return under any circumstance.</summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.DoesNotReturnIfAttribute">
+            <summary>Specifies that the method will not return if the associated Boolean parameter is passed the specified value.</summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.DoesNotReturnIfAttribute.#ctor(System.Boolean)">
+            <summary>Initializes the attribute with the specified parameter value.</summary>
+            <param name="parameterValue">
+            The condition parameter value. Code after the method will be considered unreachable by diagnostics if the argument to
+            the associated parameter matches this value.
+            </param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.DoesNotReturnIfAttribute.ParameterValue">
+            <summary>Gets the condition parameter value.</summary>
+        </member>
+    </members>
+</doc>
