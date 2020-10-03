@@ -19,11 +19,11 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>C:\GitHub\HanumanInstitute.Validators\Validators\HanumanInstitute.Validators.xml</DocumentationFile>
+    <DocumentationFile>HanumanInstitute.Validators.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>C:\GitHub\HanumanInstitute.Validators\Validators\HanumanInstitute.Validators.xml</DocumentationFile>
+    <DocumentationFile>HanumanInstitute.Validators.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
