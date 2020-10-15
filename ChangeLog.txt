@@ -1,3 +1,6 @@
+v1.0.5       2020-10-15
+- string.Parse method now correctly returns null for invalid values
+
 v1.0.4       2020-10-02
 - XML code documentation was missing! Fixed.
 

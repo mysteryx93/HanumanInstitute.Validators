@@ -73,5 +73,69 @@ namespace HanumanInstitute.Validators.Tests
                 Assert.Equal(i.ToStringInvariant(), result[i]);
             }
         }
+
+        [Theory]
+        [InlineData(0.0)]
+        [InlineData(5.55555)]
+        [InlineData(-5.55555)]
+        [InlineData(double.MinValue)]
+        [InlineData(double.MaxValue)]
+        public void Parse_Double_ParseValue(double value)
+        {
+            var str = value.ToStringInvariant();
+
+            var result = str.Parse<double>();
+
+            Assert.Equal(value, result);
+        }
+
+        [Theory]
+        [InlineData(0.0)]
+        [InlineData(5.55555)]
+        [InlineData(-5.55555)]
+        public void Parse_Decimal_ParseValue(decimal value)
+        {
+            var str = value.ToStringInvariant();
+
+            var result = str.Parse<decimal>();
+
+            Assert.Equal(value, result);
+        }
+
+        [Theory]
+        [InlineData("")]
+        [InlineData(null)]
+        [InlineData("abc")]
+        [InlineData("--5")]
+        public void Parse_InvalidInt_ReturnsNull(string value)
+        {
+            var result = value.Parse<int>();
+
+            Assert.Null(result);
+        }
+
+        [Theory]
+        [InlineData("")]
+        [InlineData(null)]
+        [InlineData("abc")]
+        [InlineData("--5")]
+        public void Parse_InvalidDouble_ReturnsNull(string value)
+        {
+            var result = value.Parse<double>();
+
+            Assert.Null(result);
+        }
+
+        [Theory]
+        [InlineData("")]
+        [InlineData(null)]
+        [InlineData("abc")]
+        [InlineData("--5")]
+        public void Parse_InvalidDecimal_ReturnsNull(string value)
+        {
+            var result = value.Parse<decimal>();
+
+            Assert.Null(result);
+        }
     }
 }

@@ -69,7 +69,7 @@ namespace HanumanInstitute.Validators
                 var result = TypeDescriptor.GetConverter(typeof(T)).ConvertFromString(input);
                 return (T)result;
             }
-            catch (NotSupportedException)
+            catch (ArgumentException)
             {
                 return null;
             }
