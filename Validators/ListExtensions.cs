@@ -71,6 +71,21 @@ namespace HanumanInstitute.Validators
         }
 
         /// <summary>
+        /// Creates a casted list that exposes a list as a derived type while maintaining the same references.
+        /// </summary>
+        /// <typeparam name="TFrom">The base type of the list.</typeparam>
+        /// <typeparam name="TTo">The derived type of the list.</typeparam>
+        /// <param name="list">The list to cast.</param>
+        /// <returns>A casted list wrapping around the original list.</returns>
+        public static IList<TTo> CastList<TTo, TFrom>(this IList<TFrom> list)
+            where TTo : TFrom
+        {
+            list.CheckNotNull(nameof(list));
+
+            return new CastedList<TTo, TFrom>(list);
+        }
+
+        /// <summary>
         /// Processes an enumeration in parallel in an awaitable way.
         /// </summary>
         /// <typeparam name="TSource">The type of the source list.</typeparam>

@@ -90,6 +90,10 @@ Runs a task on each item of IEnumerable with up to specified parallel tasks. It 
 
     var result = await list.ForEachOrderedAsync(x => DoSomeWorkAsync(x));
 
+#### IList<T>.CastList<TTo, T>()
+
+Creates a casted list that exposes a derived type while maintaining the same references.
+
 ## String Extensions
 
 #### Object.ToStringInvariant()

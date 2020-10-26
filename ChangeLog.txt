@@ -1,3 +1,8 @@
+What's New
+
+v1.0.6       2020-10-26
+- Added IList<T>.CastList<TTo, T>() to create a casted list that exposes a derived type while maintaining the same references.
+
 v1.0.5       2020-10-15
 - string.Parse method now correctly returns null for invalid values
 
