@@ -113,6 +113,19 @@ namespace HanumanInstitute.Validators.Tests
             Assert.Equal(6, list[0].Value);
         }
 
+        [Fact]
+        public void CastList_ToBaseType_CanRead()
+        {
+            var list = new List<MyDerived>
+            {
+                new MyDerived() { Value = "5" },
+            };
+
+            var casted = list.CastList<MyBase, MyDerived>();
+
+            Assert.Equal(5, casted[0].Value);
+        }
+
         private class MyBase
         {
             public int Value { get; set; }

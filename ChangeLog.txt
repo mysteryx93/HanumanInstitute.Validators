@@ -1,5 +1,8 @@
 What's New
 
+v1.0.7       2020-10-26
+- Removed CastList type restriction, making it possible to convert from derived to base type.
+
 v1.0.6       2020-10-26
 - Added IList<T>.CastList<TTo, T>() to create a casted list that exposes a derived type while maintaining the same references.
 

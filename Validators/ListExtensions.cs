@@ -78,7 +78,6 @@ namespace HanumanInstitute.Validators
         /// <param name="list">The list to cast.</param>
         /// <returns>A casted list wrapping around the original list.</returns>
         public static IList<TTo> CastList<TTo, TFrom>(this IList<TFrom> list)
-            where TTo : TFrom
         {
             list.CheckNotNull(nameof(list));
 
