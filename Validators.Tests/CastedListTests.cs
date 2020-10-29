@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using Xunit;
 
 namespace HanumanInstitute.Validators.Tests
@@ -124,6 +126,40 @@ namespace HanumanInstitute.Validators.Tests
             var casted = list.CastList<MyBase, MyDerived>();
 
             Assert.Equal(5, casted[0].Value);
+        }
+
+        [Fact]
+        public void CastList_ObservableCollectionAddBase_CollectionChanged()
+        {
+            var list = new ObservableCollection<MyDerived>();
+            var casted = list.CastList<MyBase, MyDerived>();
+            var count = 0;
+            ((INotifyCollectionChanged)list).CollectionChanged += (s, e) =>
+            {
+                count++;
+            };
+
+            list.Add(new MyDerived());
+
+            Assert.Equal(1, count);
+            Assert.Single(list);
+        }
+
+        [Fact]
+        public void CastList_ObservableCollectionAddCasted_CollectionChanged()
+        {
+            var list = new ObservableCollection<MyDerived>();
+            var casted = list.CastList<MyBase, MyDerived>();
+            var count = 0;
+            ((INotifyCollectionChanged)list).CollectionChanged += (s, e) =>
+            {
+                count++;
+            };
+
+            casted.Add(new MyDerived());
+
+            Assert.Equal(1, count);
+            Assert.Single(list);
         }
 
         private class MyBase

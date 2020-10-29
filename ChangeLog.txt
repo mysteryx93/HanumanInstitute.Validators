@@ -1,5 +1,8 @@
 What's New
 
+v1.0.8       2020-10-28
+- CastList now implements INotifyPropertyChanged and INotifyCollectionChanged and forwards events if the base list implements those interfaces
+
 v1.0.7       2020-10-26
 - Removed CastList type restriction, making it possible to convert from derived to base type.
 
