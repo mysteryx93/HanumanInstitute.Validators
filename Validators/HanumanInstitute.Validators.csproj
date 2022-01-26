@@ -17,6 +17,7 @@
     <FileVersion>1.0.8.0</FileVersion>
     <Version>1.0.8</Version>
     <PackageVersion>1.1.0</PackageVersion>
+    <Title>HanumanInstitute.Validators</Title>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
