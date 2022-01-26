@@ -22,15 +22,7 @@ Other super useful functions
 
 Add NuGet package [HanumanInstitute.Validators](https://www.nuget.org/packages/HanumanInstitute.Validators/)
 
-(optional) Add .editorconfig file to every project. This will tell FxCop to stop null warnings after calling these methods.
-
-    [*.cs]
-    # EditorConfig is awesome: https://EditorConfig.org
-    dotnet_code_quality.CA1062.null_check_validation_methods = CheckNotNull|CheckNotNullOrEmpty|CheckAssignableFrom|CheckDerivesFrom
-
-To use in a file
-
-    using HanumanInstitute.Validators;
+Extension methods are available from namespace `System`.
 
 ## Validation Methods
 
@@ -120,6 +112,19 @@ Returns whether the two string values are equal, using InvariantCultureIgnoreCas
 
 Parses a string value into specified data type and returns null if conversion fails.
 
+## Command Extensions
+
+#### ICommand.Execute()
+
+Executes a command. This overloads passes null parameter.
+
+#### ICommand.CanExecute()
+
+Returns whether the command can execute in its current state. This overloads passes null parameter.
+
+#### ICommand.ExecuteIfCan()
+
+Executes the command if CanExecute if true.
 
 ## Other Extensions
 

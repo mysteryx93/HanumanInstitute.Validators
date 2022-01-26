@@ -6,6 +6,11 @@ _*
 *.suo
 *.user
 *.sln.docstates
+
+# IDE cache
+.vs/
+.vscode/
+.idea/
  
 # Build results
  
@@ -15,8 +20,6 @@ x64/
 build/
 [Bb]in/
 [Oo]bj/
-.vs/
-
 
 # Windows image file caches
 Thumbs.db

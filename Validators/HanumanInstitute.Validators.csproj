@@ -2,20 +2,21 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>default</LangVersion>
     <Nullable>enable</Nullable>
     <NeutralLanguage>en</NeutralLanguage>
     <Authors>Etienne Charland</Authors>
     <Company>Hanuman Institute</Company>
     <Description>Common validator functions and other extension methods that are used all the time.</Description>
-    <Copyright>Copyright © 2020 Etienne Charland</Copyright>
+    <Copyright>Copyright © 2020-2022 Etienne Charland</Copyright>
     <PackageProjectUrl>https://github.com/mysteryx93/HanumanInstitute.Validators</PackageProjectUrl>
     <PackageTags>.net validators extensions tools</PackageTags>
-    <PackageLicenseExpression>BSD-2-Clause</PackageLicenseExpression>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <AssemblyVersion>1.0.8.0</AssemblyVersion>
     <FileVersion>1.0.8.0</FileVersion>
     <Version>1.0.8</Version>
+    <PackageVersion>1.0.9</PackageVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -27,6 +28,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="JetBrains.Annotations" Version="2021.3.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

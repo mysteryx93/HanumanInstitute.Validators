@@ -1,5 +1,10 @@
 What's New
 
+v1.0.9       2022-01-25
+- Moved all extension methods to namespace System to be easily accessible.
+- Added attributes to improve code analysis in user code.
+- Added ICommand extensions methods.
+
 v1.0.8       2020-10-28
 - CastList now implements INotifyPropertyChanged and INotifyCollectionChanged and forwards events if the base list implements those interfaces
 

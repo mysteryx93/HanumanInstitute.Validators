@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HanumanInstitute.Validators.Properties {
+namespace System.Properties {
     using System;
     
     
