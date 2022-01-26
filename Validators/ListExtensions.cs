@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 // ReSharper disable CheckNamespace
 namespace System;
 
+/// <summary>
+/// Provides extension methods for ICollection, IList and IEnumerable.
+/// </summary>
 public static class ListExtensions
 {
     /// <summary>

@@ -18,6 +18,10 @@ public class CastedList<TTo, TFrom> : IList<TTo>, INotifyPropertyChanged, INotif
     /// </summary>
     public IList<TFrom> BaseList { get; }
 
+    /// <summary>
+    /// Initializes a new instance of the CastedList class for specified base list.
+    /// </summary>
+    /// <param name="baseList">The list to cast.</param>
     public CastedList(IList<TFrom> baseList)
     {
         BaseList = baseList;
@@ -31,7 +35,13 @@ public class CastedList<TTo, TFrom> : IList<TTo>, INotifyPropertyChanged, INotif
         }
     }
 
+    /// <summary>
+    /// Occurs when a property changes.
+    /// </summary>
     public event PropertyChangedEventHandler? PropertyChanged;
+    /// <summary>
+    /// Occurs when the collection changes.
+    /// </summary>
     public event NotifyCollectionChangedEventHandler? CollectionChanged;
 
     private void List_PropertyChanged(object sender, PropertyChangedEventArgs e) => PropertyChanged?.Invoke(sender, e);

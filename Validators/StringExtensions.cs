@@ -5,6 +5,9 @@ using System.Globalization;
 // ReSharper disable CheckNamespace
 namespace System;
 
+/// <summary>
+/// Provides extension methods for strings.
+/// </summary>
 public static class StringExtensions
 {
     /// <summary>

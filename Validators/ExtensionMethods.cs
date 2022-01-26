@@ -5,6 +5,9 @@ using System.Linq;
 // ReSharper disable CheckNamespace
 namespace System;
 
+/// <summary>
+/// Provide misc extension methods. 
+/// </summary>
 public static class ExtensionMethods
 {
     /// <summary>

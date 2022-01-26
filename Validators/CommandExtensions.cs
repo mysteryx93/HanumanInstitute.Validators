@@ -3,6 +3,9 @@ using System.Windows.Input;
 // ReSharper disable CheckNamespace
 namespace System;
 
+/// <summary>
+/// Provides extension methods for ICommand. 
+/// </summary>
 public static class CommandExtensions
 {
     /// <summary>
