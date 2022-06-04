@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 // ReSharper disable MemberCanBePrivate.Global
-// ReSharper disable CheckNamespace
-namespace System;
+
+namespace HanumanInstitute.Validators;
 
 /// <summary>
 /// Represents a casted list that exposes a list as a derived type while maintaining the same references.

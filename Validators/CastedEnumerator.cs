@@ -1,9 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-// ReSharper disable CheckNamespace
 // ReSharper disable ClassWithVirtualMembersNeverInherited.Global
 // ReSharper disable MemberCanBePrivate.Global
-namespace System;
+
+namespace HanumanInstitute.Validators;
 
 /// <summary>
 /// Enumerates through a CastedList.

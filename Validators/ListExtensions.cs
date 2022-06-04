@@ -1,12 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-// ReSharper disable CheckNamespace
-namespace System;
+namespace HanumanInstitute.Validators;
 
 /// <summary>
 /// Provides extension methods for ICollection, IList and IEnumerable.

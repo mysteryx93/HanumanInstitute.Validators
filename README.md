@@ -61,6 +61,9 @@ Checks whether value is within valid range. It throws short and meaningful excep
 
 Returns whether value is within valid range.
 
+#### RangeClusiveAttribute(min, minInclusive, max, maxInclusive)
+
+Validates that a property is within range, allowing to exclude the minimum or maximum value.
 
 ## List Extensions
 

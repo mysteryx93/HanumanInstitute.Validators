@@ -1,7 +1,6 @@
 using System.Windows.Input;
 
-// ReSharper disable CheckNamespace
-namespace System;
+namespace HanumanInstitute.Validators;
 
 /// <summary>
 /// Provides extension methods for ICommand. 

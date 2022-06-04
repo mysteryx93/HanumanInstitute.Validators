@@ -1,5 +1,9 @@
 What's New
 
+v1.2.0       2022-06-04
+- Moved extension methods back to namespace HanumanInstitute.Validators. Use global usings to make them easily accessible.
+- Added RangeClusiveAttribute
+
 v1.1.0       2022-01-25
 - Moved all extension methods to namespace System to be easily accessible.
 - Added attributes to improve code analysis in user code.

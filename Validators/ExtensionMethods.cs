@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 
-// ReSharper disable CheckNamespace
-namespace System;
+namespace HanumanInstitute.Validators;
 
 /// <summary>
 /// Provide misc extension methods. 

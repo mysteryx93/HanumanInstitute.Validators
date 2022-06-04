@@ -1,9 +1,9 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 
-// ReSharper disable CheckNamespace
-namespace System;
+namespace HanumanInstitute.Validators;
 
 /// <summary>
 /// Provides extension methods for strings.

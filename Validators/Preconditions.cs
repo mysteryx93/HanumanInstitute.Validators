@@ -1,12 +1,13 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Globalization;
-using Res = System.Properties.Resources;
+using Res = HanumanInstitute.Validators.Properties.Resources;
 using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 // ReSharper disable MemberCanBePrivate.Global
-// ReSharper disable CheckNamespace
-namespace System;
+
+namespace HanumanInstitute.Validators;
 
 /// <summary>
 /// Provides helper methods to validate parameters.
@@ -199,16 +200,42 @@ public static class Preconditions
             }
             else
             {
-                var messageMin = min.HasValue ? GetOpText(true, minInclusive).FormatInvariant(min) : null;
-                var messageMax = max.HasValue ? GetOpText(false, maxInclusive).FormatInvariant(max) : null;
-                var message = (messageMin != null && messageMax != null)
-                    ? Properties.Resources.ValueRangeAnd
-                    : Properties.Resources.ValueRange;
-                throw new ArgumentOutOfRangeException(name, value, message.FormatInvariant(name, messageMin ?? messageMax, messageMax));
+                var message = value.GetRangeError(name, min, minInclusive, max, maxInclusive);
+                throw new ArgumentOutOfRangeException(name, value, message);
             }
         }
         return value;
     }
+
+    /// <summary>
+    /// Returns the range validation message.
+    /// </summary>
+    /// <typeparam name="T">The type of data to validate.</typeparam>
+    /// <param name="value">The value to validate.</param>
+    /// <param name="name">The name of the parameter.</param>
+    /// <param name="min">The minimum valid value.</param>
+    /// <param name="minInclusive">Whether the minimum value is valid.</param>
+    /// <param name="max">The maximum valid value.</param>
+    /// <param name="maxInclusive">Whether the maximum value is valid.</param>
+    /// <returns>The range validation message.</returns>
+    public static string? GetRangeError<T>(this T value, string name, T? min = null, bool minInclusive = true, T? max = null,
+        bool maxInclusive = true)
+        where T : struct, IComparable<T>
+    {
+        if (value.IsInRange(min, minInclusive, max, maxInclusive))
+        {
+            return null;
+        }
+        else
+        {
+            var messageMin = min.HasValue ? GetOpText(true, minInclusive).FormatInvariant(min) : null;
+            var messageMax = max.HasValue ? GetOpText(false, maxInclusive).FormatInvariant(max) : null;
+            var message = (messageMin != null && messageMax != null)
+                ? Properties.Resources.ValueRangeAnd
+                : Properties.Resources.ValueRange;
+            return message.FormatInvariant(name, messageMin ?? messageMax, messageMax);
+        }
+ }
 
     private static string GetOpText(bool greaterThan, bool inclusive)
     {
