@@ -38,11 +38,13 @@ public static class Cloning
     public static T ShallowClone<T>(T source)
         where T : new()
     {
+        if (source == null) { return default!; }
+
         var result = new T();
         CopyAllFields(source, result);
         return result;
     }
-    
+
     /// <summary>
     /// Performs a deep clone of specified object by serializing and deserializing it.
     /// </summary>
@@ -50,8 +52,9 @@ public static class Cloning
     /// <typeparam name="T">The type of object to clone.</typeparam>
     /// <returns>The cloned object.</returns>
     public static T DeepClone<T>(T source)
-        where T : notnull
     {
+        if (source == null) { return default!; }
+
         using var stream = new MemoryStream();
         var serializer = new XmlSerializer(typeof(T));
         var ns = new XmlSerializerNamespaces();
