@@ -1,5 +1,8 @@
 # HanumanInstitute.Validators
+
 Common validator functions and other extension methods that are used all the time.
+
+<a href="https://www.nuget.org/packages/HanumanInstitute.Validators/"><img src="https://img.shields.io/nuget/v/HanumanInstitute.Validators.svg"></a>
 
 **The main goal of this assembly is to add helper extension methods to validate arguments.**
 
@@ -129,15 +132,25 @@ Returns whether the command can execute in its current state. This overloads pas
 
 Executes the command if CanExecute if true.
 
+## Cloning
+
+#### Cloning.CopyAllFields(source, target)
+
+Copies all fields from one instance of a class to another using reflection.
+
+#### Cloning.ShallowClone(source)
+
+Performs a shallow clone of specified object by copying all properties and fields, non-recursively.
+
+#### Cloning.DeepClone(source)
+
+Performs a deep clone of specified object by serializing and deserializing it.
+
 ## Other Extensions
 
 #### Enum.GetFlags()
 
 Returns a list of all enumeration flags that are contained in an enumeration value.
-
-#### ExtensionMethods.CopyAllFields(source, target)
-
-Copies all fields from one instance of a class to another.
 
 #### IComparable.Clamp(min, max)
 

@@ -13,9 +13,7 @@
     <PackageTags>.net validators extensions tools</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AssemblyVersion>1.2.0</AssemblyVersion>
-    <Version>1.2.0</Version>
-    <PackageVersion>1.2.0</PackageVersion>
+    <Version>1.2.1</Version>
     <Title>HanumanInstitute.Validators</Title>
   </PropertyGroup>
 

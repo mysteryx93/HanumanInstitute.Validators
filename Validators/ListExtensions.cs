@@ -107,6 +107,7 @@ public static class ListExtensions
         {
             await Task.WhenAll(
                 from item in source
+                // ReSharper disable once AccessToDisposedClosure
                 select ProcessAsync(item, task, callback, oneAtATime)).ConfigureAwait(false);
         }
 
@@ -149,6 +150,7 @@ public static class ListExtensions
         {
             await Task.WhenAll(
                 from item in source
+                // ReSharper disable once AccessToDisposedClosure
                 select ProcessAsync(item, task, callback, oneAtATime)).ConfigureAwait(false);
         }
 
@@ -194,7 +196,7 @@ public static class ListExtensions
             var i = 0;
             foreach (var item in source)
             {
-                taskList[i] = ProcessOrderedAsync(item, task, oneAtATime, i, (src, res, index) =>
+                taskList[i] = ProcessOrderedAsync(item, task, oneAtATime, i, (_, res, index) =>
                 {
                     indexList[index] = res;
                 });

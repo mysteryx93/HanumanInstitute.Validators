@@ -3,6 +3,9 @@ using System.Xml.Serialization;
 
 namespace HanumanInstitute.Validators;
 
+/// <summary>
+/// Provides utility methods to clone objects.
+/// </summary>
 public static class Cloning
 {
     /// <summary>
