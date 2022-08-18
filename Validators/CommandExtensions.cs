@@ -13,7 +13,7 @@ public static class CommandExtensions
     /// </summary>
     /// <param name="command">The command to execute.</param>
     public static void Execute(this ICommand command) => 
-        command.CheckNotNull(nameof(command)).Execute(null);
+        command.CheckNotNull(nameof(command)).Execute();
     
     /// <summary>
     /// Returns whether the command can execute in its current state.
