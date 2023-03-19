@@ -138,13 +138,10 @@ Executes the command if CanExecute if true.
 
 Copies all fields from one instance of a class to another using reflection.
 
-#### Cloning.ShallowClone(source)
+#### Cloning.DeepClone(source, serializerContext)
 
-Performs a shallow clone of specified object by copying all properties and fields, non-recursively.
-
-#### Cloning.DeepClone(source)
-
-Performs a deep clone of specified object by serializing and deserializing it.
+Performs a deep clone of specified object by serializing and deserializing it. 
+The second parameter is optional and allows passing a [Json Source Generator context](https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json/source-generation) for increased performance and to avoid reflection.
 
 ## Other Extensions
 

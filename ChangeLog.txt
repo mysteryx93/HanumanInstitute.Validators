@@ -1,5 +1,14 @@
 What's New
 
+v1.2.2       2023-03-19
+- Cloning.DeepClone now uses Json serializer instead of Xml serializer, and take an optional parameter to take a Json Source Generator context. The new parameter is optional but must be explicitly set because it is highly recommended to set a Source Generator context for performance. You will see all the places where it is being used, and if you don't want to use the new feature, specify null.
+- Cloning.ShallowCopy has been marked as obsolete as it relies on reflection and is slower than DeepCopy. Use DeepCopy instead.
+
+v1.2.1       2022-08-18
+- Removed ExtensionMethods.CopyAllFields as it could cause naming conflicts.
+- Added Cloning static class with: CopyAllFields, ShallowClone (reflection) and DeepClone (serialization).
+- Fixed a bug with ICommand.Execute().
+
 v1.2.0       2022-06-04
 - Moved extension methods back to namespace HanumanInstitute.Validators. Use global usings to make them easily accessible.
 - Added RangeClusiveAttribute
