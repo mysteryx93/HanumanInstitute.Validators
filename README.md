@@ -13,11 +13,15 @@ Tired of repeating this in every method?
 
 Now you can instead write this!
 
+    _field = Check.NotNull(value)
+
+v1 used this syntax
+
     _field = value.CheckNotNull(nameof(value));
 
 Other super useful functions
 
-    value.CheckRange(nameof(value), min: 0);
+    Check.Range(value, min: 0);
     var msg = "Value {0} is invalid.".FormatInvariant(value);
     var result = await list.ForEachOrderedAsync(x => DoSomeWorkAsync(x));
 
@@ -25,42 +29,40 @@ Other super useful functions
 
 Add NuGet package [HanumanInstitute.Validators](https://www.nuget.org/packages/HanumanInstitute.Validators/)
 
-Extension methods are available from namespace `System`.
-
 ## Validation Methods
 
-#### Object.CheckNotNull(name)
+#### Check.NotNull(Object)
 
-Checks that Object is not not null. Throws an exception for parameter 'name' if it is null. Returns Object if it is valid.
+Checks that Object is not null. Throws an exception for parameter 'name' if it is null. Returns Object if it is valid.
 
-#### String.CheckNotNullOrEmpty(name)
+#### Check.NotNullOrEmpty(string)
 
 Checks that String is not null or empty.
 
-#### IEnumerable&lt;T>.CheckNotNullOrEmpty(name)
+#### Check.NotNullOrEmpty(enumerable)
 
 Checks that IEnumerable is not null or empty.
 
-#### Type.CheckAssignableFrom(baseType, name)
+#### Check.AssignableFrom(type, baseType)
 
 Checks that Type can be assigned from baseType (object of same type is valid).
 
-#### Type.CheckDerivesFrom(baseType, name)
+#### Check.DerivesFrom(type, baseType)
 
 Checks that Type derives from baseType (object of same type is invalid).
 
-#### Enum.CheckEnumValid&lt;T>(name)
+#### Check.EnumValid&lt;T>(enum)
 
 Checks that an enumeration value is valid. Also works with Flags enumerations.
 
-#### IComparable.CheckRange(name, min, minInclusive, max, maxInclusive)
+#### Check.Range(comparable, min, minInclusive, max, maxInclusive)
 
 Checks whether value is within valid range. It throws short and meaningful exceptions based on whether min and max were set.
 
-    myInt.CheckRange(nameof(value), min: -10, max: 10) // myInt must be between -10 and 10.
-    myFloat.CheckRange(nameof(value), min: 0, minInclusive: false) // myFloat must be greater than 0.
+    Check.Range(myInt, min: -10, max: 10) // myInt must be between -10 and 10.
+    Check.Range(myFloat, min: 0, minInclusive: false) // myFloat must be greater than 0.
 
-#### IComparable.IsInRange(min, minInclusive, max, maxInclusive)
+#### Check.IsInRange(comparable, min, minInclusive, max, maxInclusive)
 
 Returns whether value is within valid range.
 

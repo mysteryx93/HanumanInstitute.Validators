@@ -1,5 +1,10 @@
 What's New
 
+v2.0         2024-08-20
+- Syntax changed from value.CheckNotNull to Check.CheckNotNull for shorter syntax
+- Fixed ICommand.Execute() that looped back on itself
+- Updated dependencies
+
 v1.2.2       2023-03-19
 - Cloning.DeepClone now uses Json serializer instead of Xml serializer, and take an optional parameter to take a Json Source Generator context. The new parameter is optional but must be explicitly set because it is highly recommended to set a Source Generator context for performance. You will see all the places where it is being used, and if you don't want to use the new feature, specify null.
 - Cloning.ShallowCopy has been marked as obsolete as it relies on reflection and is slower than DeepCopy. Use DeepCopy instead.

@@ -21,8 +21,8 @@ public static class ListExtensions
     /// <param name="items">The collection whose elements should be added to the end of the IList.</param>
     public static void AddRange<T>(this ICollection<T> list, IEnumerable<T> items)
     {
-        list.CheckNotNull(nameof(list));
-        items.CheckNotNull(nameof(items));
+        Check.NotNull(list);
+        Check.NotNull(items);
 
         if (list is List<T> castedList)
         {
@@ -44,8 +44,9 @@ public static class ListExtensions
     /// <param name="items">The collection whose elements should be added to the end of the IList.</param>
     public static void AddRange(this IList list, IEnumerable items)
     {
-        list.CheckNotNull(nameof(list));
-        items.CheckNotNull(nameof(items));
+        
+        Check.NotNull(list);
+        Check.NotNull(items);
 
         if (list is ArrayList castedList)
         {
@@ -68,7 +69,7 @@ public static class ListExtensions
     /// <returns>An object that acts as a read-only wrapper around the current IList.</returns>
     public static IList<T> AsReadOnly<T>(this IList<T> list)
     {
-        list.CheckNotNull(nameof(list));
+        Check.NotNull(list);
 
         return new ReadOnlyCollection<T>(list);
     }
@@ -82,7 +83,7 @@ public static class ListExtensions
     /// <returns>A casted list wrapping around the original list.</returns>
     public static IList<TTo> CastList<TTo, TFrom>(this IList<TFrom> list)
     {
-        list.CheckNotNull(nameof(list));
+        Check.NotNull(list);
 
         return new CastedList<TTo, TFrom>(list);
     }
@@ -99,9 +100,9 @@ public static class ListExtensions
         this IEnumerable<TSource> source, Func<TSource, Task> task,
         Action<TSource>? callback = null, int maxParallel = 10)
     {
-        source.CheckNotNull(nameof(source));
-        task.CheckNotNull(nameof(task));
-        maxParallel.CheckRange(nameof(maxParallel), min: 1);
+        Check.NotNull(source);
+        Check.NotNull(task);
+        Check.Range(maxParallel, min: 1);
 
         using (var oneAtATime = new SemaphoreSlim(maxParallel, maxParallel))
         {
@@ -142,9 +143,9 @@ public static class ListExtensions
         this IEnumerable<TSource> source, Func<TSource, Task<TResult>> task,
         Action<TSource, TResult>? callback = null, int maxParallel = 10)
     {
-        source.CheckNotNull(nameof(source));
-        task.CheckNotNull(nameof(task));
-        maxParallel.CheckRange(nameof(maxParallel), min: 1);
+        Check.NotNull(source);
+        Check.NotNull(task);
+        Check.Range(maxParallel, min: 1);
 
         using (var oneAtATime = new SemaphoreSlim(maxParallel, maxParallel))
         {
@@ -184,9 +185,9 @@ public static class ListExtensions
     public static async Task<IList<TResult>> ForEachOrderedAsync<TSource, TResult>(
         this IEnumerable<TSource> source, Func<TSource, Task<TResult>> task, int maxParallel = 10)
     {
-        source.CheckNotNull(nameof(source));
-        task.CheckNotNull(nameof(task));
-        maxParallel.CheckRange(nameof(maxParallel), min: 1);
+        Check.NotNull(source);
+        Check.NotNull(task);
+        Check.Range(maxParallel, min: 1);
 
         using (var oneAtATime = new SemaphoreSlim(maxParallel, maxParallel))
         {

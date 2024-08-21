@@ -64,8 +64,8 @@ public static class ExtensionMethods
     /// <returns>True if givenType can be converted to genericType, otherwise False.</returns>
     public static bool IsAssignableFromGeneric(this Type givenType, Type genericType)
     {
-        givenType.CheckNotNull(nameof(givenType));
-        genericType.CheckNotNull(nameof(genericType));
+        Check.NotNull(givenType);
+        Check.NotNull(genericType);
 
         var interfaceTypes = givenType.GetInterfaces();
 

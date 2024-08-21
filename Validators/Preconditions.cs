@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
-using System.Globalization;
-using Res = HanumanInstitute.Validators.Properties.Resources;
 using System.Collections;
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
+
 // ReSharper disable MemberCanBePrivate.Global
 
 namespace HanumanInstitute.Validators;
@@ -20,64 +19,36 @@ public static class Preconditions
     /// <param name="value">The value to validate.</param>
     /// <param name="name">The name of the parameter.</param>
     [return: NotNull]
-    public static T CheckNotNull<T>([NotNull, JetBrains.Annotations.NoEnumeration] this T value, string name)
-    {
-        if (value == null)
-        {
-            throw new ArgumentNullException(name);
-        }
-        return value;
-    }
+    [Obsolete("Use Check.NotNull instead for shorter syntax.")]
+    public static T CheckNotNull<T>([NotNull, JetBrains.Annotations.NoEnumeration] this T value, string name) =>
+        Check.NotNull(value, name);
 
     /// <summary>
     /// Validates whether specific value is not null or empty, and throws an exception if it is null or empty.
     /// </summary>
     /// <param name="value">The value to validate.</param>
     /// <param name="name">The name of the parameter.</param>
-    public static string CheckNotNullOrEmpty(this string? value, string name)
-    {
-        value.CheckNotNull(name);
-        if (string.IsNullOrEmpty(value))
-        {
-            ThrowArgumentNullOrEmpty(name);
-        }
-        return value;
-    }
+    [Obsolete("Use Check.NotNullOrEmpty instead for shorter syntax.")]
+    public static string CheckNotNullOrEmpty(string? value, [CallerMemberName] string name = "") =>
+        Check.NotNullOrEmpty(value, name);
 
     /// <summary>
     /// Validates whether specific list is not null or empty, and throws an exception if it is null or empty.
     /// </summary>
     /// <param name="value">The value to validate.</param>
     /// <param name="name">The name of the parameter.</param>
-    public static IEnumerable CheckNotNullOrEmpty([NotNull] this IEnumerable? value, string name)
-    {
-        // ReSharper disable PossibleMultipleEnumeration
-        value.CheckNotNull(name);
-        if (!value.GetEnumerator().MoveNext())
-        {
-            ThrowArgumentNullOrEmpty(name);
-        }
-        return value;
-        // ReSharper restore PossibleMultipleEnumeration
-    }
+    [Obsolete("Use Check.NotNullOrEmpty instead for shorter syntax.")]
+    public static IEnumerable CheckNotNullOrEmpty([NotNull] this IEnumerable? value, string name) =>
+        Check.NotNullOrEmpty(value, name);
 
     /// <summary>
     /// Validates whether specific list is not null or empty, and throws an exception if it is null or empty.
     /// </summary>
     /// <param name="value">The value to validate.</param>
     /// <param name="name">The name of the parameter.</param>
-    public static IEnumerable<T> CheckNotNullOrEmpty<T>([NotNull, JetBrains.Annotations.NoEnumeration] this IEnumerable<T>? value,
-        string name)
-    {
-        // ReSharper disable PossibleMultipleEnumeration
-        value.CheckNotNull(name);
-        if (!value.Any())
-        {
-            ThrowArgumentNullOrEmpty(name);
-        }
-        return value;
-        // ReSharper restore PossibleMultipleEnumeration
-    }
+    [Obsolete("Use Check.NotNullOrEmpty instead for shorter syntax.")]
+    public static IEnumerable<T> CheckNotNullOrEmpty<T>([NotNull, JetBrains.Annotations.NoEnumeration] this IEnumerable<T>? value, string name) =>
+        Check.NotNullOrEmpty(value, name);
 
     /// <summary>
     /// Validates whether specified type is assignable from specific base class.
@@ -85,18 +56,9 @@ public static class Preconditions
     /// <param name="value">The Type to validate.</param>
     /// <param name="baseType">The base type that value type must derive from.</param>
     /// <param name="name">The name of the parameter.</param>
-    public static Type CheckAssignableFrom(this Type? value, Type baseType, string name)
-    {
-        value.CheckNotNull(name);
-        baseType.CheckNotNull(nameof(baseType));
-
-        if (!value.IsAssignableFrom(baseType))
-        {
-            throw new ArgumentException(Properties.Resources.TypeMustBeAssignableFromBase.FormatInvariant(name, value.Name, baseType.Name),
-                name);
-        }
-        return value;
-    }
+    [Obsolete("Use Check.CheckAssignableFrom instead for shorter syntax.")]
+    public static Type CheckAssignableFrom(this Type? value, Type baseType, string name) =>
+        Check.AssignableFrom(value, baseType, name);
 
     /// <summary>
     /// Validates whether specified type derives from specific base class.
@@ -104,17 +66,9 @@ public static class Preconditions
     /// <param name="value">The Type to validate.</param>
     /// <param name="baseType">The base type that value type must derive from.</param>
     /// <param name="name">The name of the parameter.</param>
-    public static Type CheckDerivesFrom(this Type? value, Type baseType, string name)
-    {
-        value.CheckNotNull(name);
-        baseType.CheckNotNull(nameof(baseType));
-
-        if (!value.IsSubclassOf(baseType))
-        {
-            throw new ArgumentException(Properties.Resources.TypeMustDeriveFromBase.FormatInvariant(name, value.Name, baseType.Name), name);
-        }
-        return value;
-    }
+    [Obsolete("Use Check.DerivesFrom instead for shorter syntax.")]
+    public static Type CheckDerivesFrom(this Type? value, Type baseType, string name) =>
+        Check.DerivesFrom(value, baseType, name);
 
     /// <summary>
     /// Validates whether an enumeration value is valid, since it can contain any integer value.
@@ -123,38 +77,10 @@ public static class Preconditions
     /// <typeparam name="T">The type of enumeration.</typeparam>
     /// <param name="value">The value to validate.</param>
     /// <param name="name">The name of the property.</param>
+    [Obsolete("Use Check.EnumValid instead for shorter syntax.")]
     public static T CheckEnumValid<T>(this T value, string name)
-        where T : Enum
-    {
-        var intValue = Convert.ToInt32(value, CultureInfo.InvariantCulture);
-        var defined = Enum.IsDefined(typeof(T), intValue);
-
-        if (!defined && IsEnumTypeFlags<T>())
-        {
-            defined = CheckEnumValidFlags<T>(intValue);
-        }
-        if (!defined)
-        {
-            throw new ArgumentException(Properties.Resources.ValueInvalidEnum.FormatInvariant(value, name, nameof(T)), name);
-        }
-        return value;
-    }
-
-    private static bool IsEnumTypeFlags<T>() 
         where T : Enum =>
-        typeof(T).GetCustomAttributes(typeof(FlagsAttribute), true).Any();
-
-    private static bool CheckEnumValidFlags<T>(int value)
-        where T : Enum
-    {
-        var mask = 0;
-        foreach (var enumValue in Enum.GetValues(typeof(T)))
-        {
-            mask |= (int)enumValue;
-        }
-
-        return (mask & value) == value;
-    }
+        Check.EnumValid(value, name);
 
     /// <summary>
     /// Returns whether specified value is in valid range.
@@ -166,15 +92,10 @@ public static class Preconditions
     /// <param name="max">The maximum valid value.</param>
     /// <param name="maxInclusive">Whether the maximum value is valid.</param>
     /// <returns>Whether the value is within range.</returns>
+    [Obsolete("Use Check.IsInRange instead.")]
     public static bool IsInRange<T>(this T value, T? min = null, bool minInclusive = true, T? max = null, bool maxInclusive = true)
-        where T : struct, IComparable<T>
-    {
-        var minValid = min == null || (minInclusive && value.CompareTo(min.Value) >= 0) ||
-                       (!minInclusive && value.CompareTo(min.Value) > 0);
-        var maxValid = max == null || (maxInclusive && value.CompareTo(max.Value) <= 0) ||
-                       (!maxInclusive && value.CompareTo(max.Value) < 0);
-        return minValid && maxValid;
-    }
+        where T : struct, IComparable<T> =>
+        Check.IsInRange(value, min, minInclusive, max, maxInclusive);
 
     /// <summary>
     /// Validates whether specified value is in valid range, and throws an exception if out of range.
@@ -187,25 +108,11 @@ public static class Preconditions
     /// <param name="max">The maximum valid value.</param>
     /// <param name="maxInclusive">Whether the maximum value is valid.</param>
     /// <returns>The value if valid.</returns>
+    [Obsolete("Use Check.Range instead for shorter syntax.")]
     public static T CheckRange<T>(this T value, string name, T? min = null, bool minInclusive = true, T? max = null,
         bool maxInclusive = true)
-        where T : struct, IComparable<T>
-    {
-        if (!value.IsInRange(min, minInclusive, max, maxInclusive))
-        {
-            if (min.HasValue && minInclusive && max.HasValue && maxInclusive)
-            {
-                var message = Properties.Resources.ValueRangeBetween;
-                throw new ArgumentOutOfRangeException(name, value, message.FormatInvariant(name, min, max));
-            }
-            else
-            {
-                var message = value.GetRangeError(name, min, minInclusive, max, maxInclusive);
-                throw new ArgumentOutOfRangeException(name, value, message);
-            }
-        }
-        return value;
-    }
+        where T : struct, IComparable<T> =>
+        Check.Range(value, min, minInclusive, max, maxInclusive, name);
 
     /// <summary>
     /// Returns the range validation message.
@@ -218,37 +125,17 @@ public static class Preconditions
     /// <param name="max">The maximum valid value.</param>
     /// <param name="maxInclusive">Whether the maximum value is valid.</param>
     /// <returns>The range validation message.</returns>
+    [Obsolete("Use Check.GetRangeError instead for shorter syntax.")]
     public static string? GetRangeError<T>(this T value, string name, T? min = null, bool minInclusive = true, T? max = null,
         bool maxInclusive = true)
-        where T : struct, IComparable<T>
-    {
-        if (value.IsInRange(min, minInclusive, max, maxInclusive))
-        {
-            return null;
-        }
-        else
-        {
-            var messageMin = min.HasValue ? GetOpText(true, minInclusive).FormatInvariant(min) : null;
-            var messageMax = max.HasValue ? GetOpText(false, maxInclusive).FormatInvariant(max) : null;
-            var message = (messageMin != null && messageMax != null)
-                ? Properties.Resources.ValueRangeAnd
-                : Properties.Resources.ValueRange;
-            return message.FormatInvariant(name, messageMin ?? messageMax, messageMax);
-        }
- }
-
-    private static string GetOpText(bool greaterThan, bool inclusive)
-    {
-        return (greaterThan && inclusive) ? Properties.Resources.ValueRangeGreaterThanInclusive :
-            greaterThan ? Properties.Resources.ValueRangeGreaterThan :
-            inclusive ? Properties.Resources.ValueRangeLessThanInclusive :
-            Properties.Resources.ValueRangeLessThan;
-    }
+        where T : struct, IComparable<T> =>
+        Check.GetRangeError(value, min, minInclusive, max, maxInclusive, name);
 
     /// <summary>
     /// Throws an exception of type ArgumentException saying an argument is null or empty.
     /// </summary>
     /// <param name="name">The name of the parameter.</param>
+    [Obsolete("Use Check.ThrowArgumentNullOrEmpty instead.")]
     public static void ThrowArgumentNullOrEmpty(this string name)
     {
         throw new ArgumentException(Properties.Resources.ValueEmpty.FormatInvariant(name), name);

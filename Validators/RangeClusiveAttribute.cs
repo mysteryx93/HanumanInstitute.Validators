@@ -63,7 +63,8 @@ public class RangeClusiveAttribute : ValidationAttribute
             return false;
         }
 
-        _lastValidationError = convertedValue.GetRangeError("{0}", Min, MinInclusive, Max, MaxInclusive);
+        // ReSharper disable once ExplicitCallerInfoArgument
+        _lastValidationError = Check.GetRangeError(convertedValue, Min, MinInclusive, Max, MaxInclusive, "{0}");
         return _lastValidationError == null;
     }
 
