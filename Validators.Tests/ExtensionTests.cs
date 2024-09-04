@@ -101,6 +101,18 @@ public class ExtensionTests
 
         Assert.Equal(value, result);
     }
+    
+    [Theory]
+    [InlineData(TestEnum.Value1)]
+    [InlineData(TestEnum.Value3)]
+    public void Parse_Enum_ParseValue(TestEnum value)
+    {
+        var str = value.ToStringInvariant();
+
+        var result = str.Parse<TestEnum>();
+
+        Assert.Equal(value, result);
+    }
 
     [Theory]
     [InlineData("")]
@@ -136,5 +148,25 @@ public class ExtensionTests
         var result = value.Parse<decimal>();
 
         Assert.Null(result);
+    }
+    
+    [Theory]
+    [InlineData("")]
+    [InlineData(null)]
+    [InlineData("abc")]
+    public void Parse_InvalidEnum_ParseValue(string value)
+    {
+        var str = value.ToStringInvariant();
+
+        var result = str.Parse<TestEnum>();
+
+        Assert.Null(result);
+    }
+
+    public enum TestEnum
+    {
+        Value1,
+        Value2,
+        Value3
     }
 }

@@ -76,5 +76,9 @@ public static class StringExtensions
         {
             return null;
         }
+        catch (FormatException)
+        {
+            return null;
+        }
     }
 }

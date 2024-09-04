@@ -1,5 +1,8 @@
 What's New
 
+v2.0.1       2004-09-4
+- Fixed string.Parse throwing an error when parsing invalid Enum
+
 v2.0         2024-08-20
 - Syntax changed from value.CheckNotNull to Check.CheckNotNull for shorter syntax
 - Fixed ICommand.Execute() that looped back on itself
