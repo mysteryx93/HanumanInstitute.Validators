@@ -8,6 +8,9 @@ using System.Runtime.CompilerServices;
 
 namespace HanumanInstitute.Validators;
 
+/// <summary>
+/// Provides easy methods to validate values.
+/// </summary>
 public static class Check
 {
     /// <summary>
@@ -16,7 +19,7 @@ public static class Check
     /// <param name="value">The value to validate.</param>
     /// <param name="name">The name of the parameter.</param>
     [return: NotNull]
-    public static T NotNull<T>([NotNull, JetBrains.Annotations.NoEnumeration] T value, [CallerMemberName] string name = "")
+    public static T NotNull<T>([NotNull, JetBrains.Annotations.NoEnumeration] T value, [CallerArgumentExpression(nameof(value))] string name = "")
     {
         if (value == null)
         {
@@ -30,9 +33,9 @@ public static class Check
     /// </summary>
     /// <param name="value">The value to validate.</param>
     /// <param name="name">The name of the parameter.</param>
-    public static string NotNullOrEmpty(string? value, [CallerMemberName] string name = "")
+    public static string NotNullOrEmpty([NotNull]string? value, [CallerArgumentExpression(nameof(value))] string name = "")
     {
-        value.CheckNotNull(name);
+        NotNull(value, name);
         if (string.IsNullOrEmpty(value))
         {
             ThrowArgumentNullOrEmpty(name);
@@ -45,7 +48,7 @@ public static class Check
     /// </summary>
     /// <param name="value">The value to validate.</param>
     /// <param name="name">The name of the parameter.</param>
-    public static IEnumerable NotNullOrEmpty([NotNull] IEnumerable? value, [CallerMemberName] string name = "")
+    public static IEnumerable NotNullOrEmpty([NotNull] IEnumerable? value, [CallerArgumentExpression(nameof(value))] string name = "")
     {
         // ReSharper disable PossibleMultipleEnumeration
         NotNull(value, name);
@@ -64,8 +67,7 @@ public static class Check
     /// <param name="value">The value to validate.</param>
     /// <param name="name">The name of the parameter.</param>
     public static IEnumerable<T> NotNullOrEmpty<T>([NotNull, JetBrains.Annotations.NoEnumeration] IEnumerable<T>? value,
-        [CallerMemberName]
-        string name = "")
+        [CallerArgumentExpression(nameof(value))] string name = "")
     {
         // ReSharper disable PossibleMultipleEnumeration
         NotNull(value, name);
@@ -83,7 +85,7 @@ public static class Check
     /// <param name="value">The Type to validate.</param>
     /// <param name="baseType">The base type that value type must derive from.</param>
     /// <param name="name">The name of the parameter.</param>
-    public static Type AssignableFrom(Type? value, Type baseType, [CallerMemberName] string name = "")
+    public static Type AssignableFrom(Type? value, Type baseType, [CallerArgumentExpression(nameof(value))] string name = "")
     {
         NotNull(value, name);
         NotNull(baseType);
@@ -102,7 +104,7 @@ public static class Check
     /// <param name="value">The Type to validate.</param>
     /// <param name="baseType">The base type that value type must derive from.</param>
     /// <param name="name">The name of the parameter.</param>
-    public static Type DerivesFrom(Type? value, Type baseType, [CallerMemberName] string name = "")
+    public static Type DerivesFrom(Type? value, Type baseType, [CallerArgumentExpression(nameof(value))] string name = "")
     {
         NotNull(value, name);
         NotNull(baseType);
@@ -121,7 +123,7 @@ public static class Check
     /// <typeparam name="T">The type of enumeration.</typeparam>
     /// <param name="value">The value to validate.</param>
     /// <param name="name">The name of the property.</param>
-    public static T EnumValid<T>(T value, [CallerMemberName] string name = "")
+    public static T EnumValid<T>(T value, [CallerArgumentExpression(nameof(value))] string name = "")
         where T : Enum
     {
         var intValue = Convert.ToInt32(value, CultureInfo.InvariantCulture);
@@ -186,7 +188,7 @@ public static class Check
     /// <param name="maxInclusive">Whether the maximum value is valid.</param>
     /// <returns>The value if valid.</returns>
     public static T Range<T>(T value, T? min = null, bool minInclusive = true, T? max = null,
-        bool maxInclusive = true, [CallerMemberName] string name = "")
+        bool maxInclusive = true, [CallerArgumentExpression(nameof(value))] string name = "")
         where T : struct, IComparable<T>
     {
         if (!Check.IsInRange(value, min, minInclusive, max, maxInclusive))
@@ -217,7 +219,7 @@ public static class Check
     /// <param name="name">The name of the parameter.</param>
     /// <returns>The range validation message.</returns>
     public static string? GetRangeError<T>(T value, T? min = null, bool minInclusive = true, T? max = null,
-        bool maxInclusive = true, [CallerMemberName] string name = "")
+        bool maxInclusive = true, [CallerArgumentExpression(nameof(value))] string name = "")
         where T : struct, IComparable<T>
     {
         if (Check.IsInRange(value, min, minInclusive, max, maxInclusive)) { return null; }
