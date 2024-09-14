@@ -19,7 +19,6 @@ public static class Preconditions
     /// <param name="value">The value to validate.</param>
     /// <param name="name">The name of the parameter.</param>
     [return: NotNull]
-    [Obsolete("Use Check.NotNull instead for shorter syntax.")]
     public static T CheckNotNull<T>([NotNull, JetBrains.Annotations.NoEnumeration] this T value, [CallerArgumentExpression(nameof(value))] string name = "") =>
         Check.NotNull(value, name);
 
@@ -28,7 +27,6 @@ public static class Preconditions
     /// </summary>
     /// <param name="value">The value to validate.</param>
     /// <param name="name">The name of the parameter.</param>
-    [Obsolete("Use Check.NotNullOrEmpty instead for shorter syntax.")]
     public static string CheckNotNullOrEmpty(string? value, [CallerArgumentExpression(nameof(value))] string name = "") =>
         Check.NotNullOrEmpty(value, name);
 
@@ -37,7 +35,6 @@ public static class Preconditions
     /// </summary>
     /// <param name="value">The value to validate.</param>
     /// <param name="name">The name of the parameter.</param>
-    [Obsolete("Use Check.NotNullOrEmpty instead for shorter syntax.")]
     public static IEnumerable CheckNotNullOrEmpty([NotNull] this IEnumerable? value, [CallerArgumentExpression(nameof(value))] string name = "") =>
         Check.NotNullOrEmpty(value, name);
 
@@ -46,7 +43,6 @@ public static class Preconditions
     /// </summary>
     /// <param name="value">The value to validate.</param>
     /// <param name="name">The name of the parameter.</param>
-    [Obsolete("Use Check.NotNullOrEmpty instead for shorter syntax.")]
     public static IEnumerable<T> CheckNotNullOrEmpty<T>([NotNull, JetBrains.Annotations.NoEnumeration] this IEnumerable<T>? value, [CallerArgumentExpression(nameof(value))] string name = "") =>
         Check.NotNullOrEmpty(value, name);
 
@@ -56,7 +52,6 @@ public static class Preconditions
     /// <param name="value">The Type to validate.</param>
     /// <param name="baseType">The base type that value type must derive from.</param>
     /// <param name="name">The name of the parameter.</param>
-    [Obsolete("Use Check.CheckAssignableFrom instead for shorter syntax.")]
     public static Type CheckAssignableFrom(this Type? value, Type baseType, [CallerArgumentExpression(nameof(value))] string name = "") =>
         Check.AssignableFrom(value, baseType, name);
 
@@ -66,7 +61,6 @@ public static class Preconditions
     /// <param name="value">The Type to validate.</param>
     /// <param name="baseType">The base type that value type must derive from.</param>
     /// <param name="name">The name of the parameter.</param>
-    [Obsolete("Use Check.DerivesFrom instead for shorter syntax.")]
     public static Type CheckDerivesFrom(this Type? value, Type baseType, [CallerArgumentExpression(nameof(value))] string name = "") =>
         Check.DerivesFrom(value, baseType, name);
 
@@ -77,7 +71,6 @@ public static class Preconditions
     /// <typeparam name="T">The type of enumeration.</typeparam>
     /// <param name="value">The value to validate.</param>
     /// <param name="name">The name of the property.</param>
-    [Obsolete("Use Check.EnumValid instead for shorter syntax.")]
     public static T CheckEnumValid<T>(this T value, [CallerArgumentExpression(nameof(value))] string name = "")
         where T : Enum =>
         Check.EnumValid(value, name);
@@ -92,7 +85,6 @@ public static class Preconditions
     /// <param name="max">The maximum valid value.</param>
     /// <param name="maxInclusive">Whether the maximum value is valid.</param>
     /// <returns>Whether the value is within range.</returns>
-    [Obsolete("Use Check.IsInRange instead.")]
     public static bool IsInRange<T>(this T value, T? min = null, bool minInclusive = true, T? max = null, bool maxInclusive = true)
         where T : struct, IComparable<T> =>
         Check.IsInRange(value, min, minInclusive, max, maxInclusive);
@@ -108,7 +100,6 @@ public static class Preconditions
     /// <param name="max">The maximum valid value.</param>
     /// <param name="maxInclusive">Whether the maximum value is valid.</param>
     /// <returns>The value if valid.</returns>
-    [Obsolete("Use Check.Range instead for shorter syntax.")]
     public static T CheckRange<T>(this T value, [CallerArgumentExpression(nameof(value))] string name = "", T? min = null, bool minInclusive = true, T? max = null,
         bool maxInclusive = true)
         where T : struct, IComparable<T> =>
@@ -125,7 +116,6 @@ public static class Preconditions
     /// <param name="max">The maximum valid value.</param>
     /// <param name="maxInclusive">Whether the maximum value is valid.</param>
     /// <returns>The range validation message.</returns>
-    [Obsolete("Use Check.GetRangeError instead for shorter syntax.")]
     public static string? GetRangeError<T>(this T value, [CallerArgumentExpression(nameof(value))] string name = "", T? min = null, 
         bool minInclusive = true, T? max = null, bool maxInclusive = true)
         where T : struct, IComparable<T> =>
@@ -135,7 +125,6 @@ public static class Preconditions
     /// Throws an exception of type ArgumentException saying an argument is null or empty.
     /// </summary>
     /// <param name="name">The name of the parameter.</param>
-    [Obsolete("Use Check.ThrowArgumentNullOrEmpty instead.")]
     public static void ThrowArgumentNullOrEmpty(this string name)
     {
         throw new ArgumentException(Properties.Resources.ValueEmpty.FormatInvariant(name), name);

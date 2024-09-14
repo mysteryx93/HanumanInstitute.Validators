@@ -1,11 +1,13 @@
 What's New
 
-v2.1         2004-09-11
-- Fixed property name not being properly detected -- finally found the solution
-- Both syntaxes now works to auto-detect property name (value.CheckNotNull or Check.NotNull(value))
+v2.1.1       2024-09-14
 - Removed DeprecatedAttributes since both syntaxes are just as short so it's a matter of preference
 
-v2.0.1       2004-09-04
+v2.1         2024-09-11
+- Fixed property name not being properly detected -- finally found the solution
+- Both syntaxes now works to auto-detect property name (value.CheckNotNull or Check.NotNull(value))
+
+v2.0.1       2024-09-04
 - Fixed string.Parse throwing an error when parsing invalid Enum
 
 v2.0         2024-08-20
