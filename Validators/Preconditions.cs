@@ -27,7 +27,7 @@ public static class Preconditions
     /// </summary>
     /// <param name="value">The value to validate.</param>
     /// <param name="name">The name of the parameter.</param>
-    public static string CheckNotNullOrEmpty(string? value, [CallerArgumentExpression(nameof(value))] string name = "") =>
+    public static string CheckNotNullOrEmpty([NotNull] this string? value, [CallerArgumentExpression(nameof(value))] string name = "") =>
         Check.NotNullOrEmpty(value, name);
 
     /// <summary>

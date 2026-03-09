@@ -1,5 +1,10 @@
 What's New
 
+v2.1.2       2026-03-09
+- Updated dependencies
+- Fixed String.CheckNotNullOrEmpty extension method (was missing 'this' to make it extension method)
+- Now compile for netstandard2.0, net8.0, net10.0
+
 v2.1.1       2024-09-14
 - Removed DeprecatedAttributes since both syntaxes are just as short so it's a matter of preference
 

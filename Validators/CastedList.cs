@@ -44,8 +44,8 @@ public class CastedList<TTo, TFrom> : IList<TTo>, INotifyPropertyChanged, INotif
     /// </summary>
     public event NotifyCollectionChangedEventHandler? CollectionChanged;
 
-    private void List_PropertyChanged(object sender, PropertyChangedEventArgs e) => PropertyChanged?.Invoke(sender, e);
-    private void List_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e) => CollectionChanged?.Invoke(sender, e);
+    private void List_PropertyChanged(object? sender, PropertyChangedEventArgs e) => PropertyChanged?.Invoke(sender, e);
+    private void List_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e) => CollectionChanged?.Invoke(sender, e);
 
     // IEnumerable
     /// <inheritdoc/>

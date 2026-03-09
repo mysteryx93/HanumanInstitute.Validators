@@ -69,7 +69,7 @@ public static class StringExtensions
 
         try
         {
-            var result = TypeDescriptor.GetConverter(typeof(T)).ConvertFromString(input);
+            var result = TypeDescriptor.GetConverter(typeof(T)).ConvertFromString(input)!;
             return (T)result;
         }
         catch (ArgumentException)
