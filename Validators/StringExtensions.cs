@@ -58,6 +58,33 @@ public static class StringExtensions
     public static bool EqualsInvariant(this string? value1, object? value2) => string.Compare(value1, value2?.ToStringInvariant(), StringComparison.InvariantCultureIgnoreCase) == 0;
 
     /// <summary>
+    /// Returns whether this string starts with specified value, using InvariantCultureIgnoreCase. Note that extension methods work on null values.
+    /// </summary>
+    /// <param name="value">The string to evaluate.</param>
+    /// <param name="value2">The prefix to seek.</param>
+    /// <returns>Whether value starts with value2.</returns>
+    public static bool StartsWithInvariant(this string? value, string value2) =>
+        value?.StartsWith(value2, StringComparison.InvariantCultureIgnoreCase) == true;
+
+    /// <summary>
+    /// Returns whether this string ends with specified value, using InvariantCultureIgnoreCase. Note that extension methods work on null values.
+    /// </summary>
+    /// <param name="value">The string to evaluate.</param>
+    /// <param name="value2">The suffix to seek.</param>
+    /// <returns>Whether value ends with value2.</returns>
+    public static bool EndsWithInvariant(this string? value, string value2) =>
+        value?.EndsWith(value2, StringComparison.InvariantCultureIgnoreCase) == true;
+
+    /// <summary>
+    /// Returns whether this string contains specified value, using InvariantCultureIgnoreCase. Note that extension methods work on null values.
+    /// </summary>
+    /// <param name="value">The string to evaluate.</param>
+    /// <param name="value2">The substring to seek.</param>
+    /// <returns>Whether value contains value2.</returns>
+    public static bool ContainsInvariant(this string? value, string value2) =>
+        value?.IndexOf(value2, StringComparison.InvariantCultureIgnoreCase) >= 0;
+
+    /// <summary>
     /// Parses a string value into specified data type and returns null if conversion fails.
     /// </summary>
     /// <typeparam name="T">The data type to parse into.</typeparam>

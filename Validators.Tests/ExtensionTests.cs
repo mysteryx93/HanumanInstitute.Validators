@@ -163,6 +163,55 @@ public class ExtensionTests
         Assert.Null(result);
     }
 
+    [Theory]
+    [InlineData("HelloWorld", "hello", true)]
+    [InlineData("HelloWorld", "HELLO", true)]
+    [InlineData("HelloWorld", "world", false)]
+    [InlineData("HelloWorld", "xyz", false)]
+    [InlineData("HelloWorld", "", true)]
+    [InlineData(null, "a", false)]
+    [InlineData("", "a", false)]
+    [InlineData("", "", true)]
+    public void StartsWithInvariant_Various_ReturnsExpected(string value, string value2, bool expected)
+    {
+        var result = value.StartsWithInvariant(value2);
+
+        Assert.Equal(expected, result);
+    }
+
+    [Theory]
+    [InlineData("HelloWorld", "world", true)]
+    [InlineData("HelloWorld", "WORLD", true)]
+    [InlineData("HelloWorld", "hello", false)]
+    [InlineData("HelloWorld", "xyz", false)]
+    [InlineData("HelloWorld", "", true)]
+    [InlineData(null, "a", false)]
+    [InlineData("", "a", false)]
+    [InlineData("", "", true)]
+    public void EndsWithInvariant_Various_ReturnsExpected(string value, string value2, bool expected)
+    {
+        var result = value.EndsWithInvariant(value2);
+
+        Assert.Equal(expected, result);
+    }
+
+    [Theory]
+    [InlineData("HelloWorld", "lowo", true)]
+    [InlineData("HelloWorld", "LOWO", true)]
+    [InlineData("HelloWorld", "hello", true)]
+    [InlineData("HelloWorld", "world", true)]
+    [InlineData("HelloWorld", "xyz", false)]
+    [InlineData("HelloWorld", "", true)]
+    [InlineData(null, "a", false)]
+    [InlineData("", "a", false)]
+    [InlineData("", "", true)]
+    public void ContainsInvariant_Various_ReturnsExpected(string value, string value2, bool expected)
+    {
+        var result = value.ContainsInvariant(value2);
+
+        Assert.Equal(expected, result);
+    }
+
     public enum TestEnum
     {
         Value1,

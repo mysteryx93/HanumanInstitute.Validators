@@ -1,5 +1,8 @@
 What's New
 
+v2.1.3       2026-08-06
+- Added String.BeginsWithInvariant, String.EndsWithInvariant and String.ContainsInvariant extension methods
+
 v2.1.2       2026-03-09
 - Updated dependencies
 - Fixed String.CheckNotNullOrEmpty extension method (was missing 'this' to make it extension method)
