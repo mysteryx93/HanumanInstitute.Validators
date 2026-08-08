@@ -100,6 +100,10 @@ Creates a casted list that exposes a derived type while maintaining the same ref
 
 Converts a value to string using InvariantCulture.
 
+#### StringBuilder.AppendFormatInvariant()
+
+Formats a string using invariant culture and appends it to the StringBuilder.
+
 #### String.HasValue()
 
 Returns whether the string contains a value. It is the equivalent of !string.IsNullOrEmpty(value).

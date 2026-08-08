@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+using System.Text;
 
 namespace HanumanInstitute.Validators;
 
@@ -108,4 +109,14 @@ public static class StringExtensions
             return null;
         }
     }
+    
+    /// <summary>
+    /// Appends a formatted string to the StringBuilder using invariant culture. This is a shortcut for StringBuilder.AppendFormat(CultureInfo.InvariantCulture, ...)
+    /// </summary>
+    /// <param name="builder">The StringBuilder to append to.</param>
+    /// <param name="format">A composite format string.</param>
+    /// <param name="args">An object array that contains zero or more objects to format.</param>
+    /// <returns>The same StringBuilder instance for method chaining.</returns>
+    public static StringBuilder AppendFormatInvariant(this StringBuilder builder, string format, params object?[] args) => 
+        builder.AppendFormat(CultureInfo.InvariantCulture, format, args);
 }
