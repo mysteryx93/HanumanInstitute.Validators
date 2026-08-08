@@ -31,38 +31,38 @@ Add NuGet package [HanumanInstitute.Validators](https://www.nuget.org/packages/H
 
 ## Validation Methods
 
-#### Check.NotNull(Object)
+#### Check.NotNull(Object) / Object.CheckNotNull()
 
 Checks that Object is not null. Throws an exception for parameter 'name' if it is null. Returns Object if it is valid.
 
-#### Check.NotNullOrEmpty(string)
+#### Check.NotNullOrEmpty(string) / string.CheckNotNullOrEmpty()
 
 Checks that String is not null or empty.
 
-#### Check.NotNullOrEmpty(enumerable)
+#### Check.NotNullOrEmpty(enumerable) / enumerable.CheckNotNullOrEmpty()
 
 Checks that IEnumerable is not null or empty.
 
-#### Check.AssignableFrom(type, baseType)
+#### Check.AssignableFrom(type, baseType) / type.CheckAssignableFrom(baseType)
 
 Checks that Type can be assigned from baseType (object of same type is valid).
 
-#### Check.DerivesFrom(type, baseType)
+#### Check.DerivesFrom(type, baseType) / type.CheckDerivesFrom(baseType)
 
 Checks that Type derives from baseType (object of same type is invalid).
 
-#### Check.EnumValid&lt;T>(enum)
+#### Check.EnumValid&lt;T>(enum) / enum.CheckEnumValid()
 
 Checks that an enumeration value is valid. Also works with Flags enumerations.
 
-#### Check.Range(comparable, min, minInclusive, max, maxInclusive)
+#### Check.Range(comparable, min, minInclusive, max, maxInclusive) / comparable.CheckRange
 
 Checks whether value is within valid range. It throws short and meaningful exceptions based on whether min and max were set.
 
     Check.Range(myInt, min: -10, max: 10) // myInt must be between -10 and 10.
     Check.Range(myFloat, min: 0, minInclusive: false) // myFloat must be greater than 0.
 
-#### Check.IsInRange(comparable, min, minInclusive, max, maxInclusive)
+#### Check.IsInRange(comparable, min, minInclusive, max, maxInclusive) / comparable.CheckIsInRange
 
 Returns whether value is within valid range.
 
@@ -75,6 +75,10 @@ Validates that a property is within range, allowing to exclude the minimum or ma
 #### ICollection/IList.AddRange()
 
 [List.AddRange](https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.addrange) is notably missing from standard IList interface!! Fixed.
+
+#### IDictionary.GetValueOrDefault(key, defaultValue = default)
+
+Gets the value for a key, or `defaultValue` if the key is not found.
 
 #### IList.AsReadOnly()
 

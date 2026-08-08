@@ -212,6 +212,86 @@ public class ExtensionTests
         Assert.Equal(expected, result);
     }
 
+    [Fact]
+    public void GetValueOrDefault_ClassKeyExists_ReturnsValue()
+    {
+        IDictionary<string, string> dictionary = new Dictionary<string, string> { ["a"] = "value" };
+
+        var result = dictionary.GetValueOrDefault("a");
+
+        Assert.Equal("value", result);
+    }
+
+    [Fact]
+    public void GetValueOrDefault_ClassKeyMissing_ReturnsDefaultNull()
+    {
+        IDictionary<string, string> dictionary = new Dictionary<string, string> { ["a"] = "value" };
+
+        var result = dictionary.GetValueOrDefault("missing");
+
+        Assert.Null(result);
+    }
+
+    [Fact]
+    public void GetValueOrDefault_ClassKeyMissing_ReturnsProvidedDefault()
+    {
+        IDictionary<string, string> dictionary = new Dictionary<string, string> { ["a"] = "value" };
+
+        var result = dictionary.GetValueOrDefault("missing", "n/a");
+
+        Assert.Equal("n/a", result);
+    }
+
+    [Fact]
+    public void GetValueOrDefault_ClassStoredNull_ReturnsNull()
+    {
+        IDictionary<string, string> dictionary = new Dictionary<string, string> { ["a"] = null };
+
+        var result = dictionary.GetValueOrDefault("a");
+
+        Assert.Null(result);
+    }
+
+    [Fact]
+    public void GetValueOrDefault_StructKeyExists_ReturnsValue()
+    {
+        IDictionary<string, int> dictionary = new Dictionary<string, int> { ["a"] = 42 };
+
+        var result = dictionary.GetValueOrDefault("a");
+
+        Assert.Equal(42, result);
+    }
+
+    [Fact]
+    public void GetValueOrDefault_StructKeyMissing_ReturnsDefaultZero()
+    {
+        IDictionary<string, int> dictionary = new Dictionary<string, int> { ["a"] = 42 };
+
+        var result = dictionary.GetValueOrDefault("missing");
+
+        Assert.Equal(0, result);
+    }
+
+    [Fact]
+    public void GetValueOrDefault_StructKeyMissing_ReturnsProvidedDefault()
+    {
+        IDictionary<string, int> dictionary = new Dictionary<string, int> { ["a"] = 42 };
+
+        var result = dictionary.GetValueOrDefault("missing", -1);
+
+        Assert.Equal(-1, result);
+    }
+
+    [Fact]
+    public void GetValueOrDefault_StructZeroValue_ReturnsZero()
+    {
+        IDictionary<string, int> dictionary = new Dictionary<string, int> { ["a"] = 0 };
+
+        var result = dictionary.GetValueOrDefault("a");
+
+        Assert.Equal(0, result);
+    }
+
     public enum TestEnum
     {
         Value1,

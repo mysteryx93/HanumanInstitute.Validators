@@ -1,5 +1,8 @@
 What's New
 
+v2.1.5       2026-08-08
+- Added IDictionary.GetValueOrDefault
+
 v2.1.4       2026-08-07
 - Added StringBuilder.AppendFormatInvariant
 
