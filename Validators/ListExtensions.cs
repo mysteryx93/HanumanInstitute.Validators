@@ -67,7 +67,7 @@ public static class ListExtensions
     /// <typeparam name="T">The type of list items.</typeparam>
     /// <param name="list">The list to return as read-only.</param>
     /// <returns>An object that acts as a read-only wrapper around the current IList.</returns>
-    public static IList<T> AsReadOnly<T>(this IList<T> list)
+    public static IReadOnlyList<T> AsReadOnly<T>(this IList<T> list)
     {
         Check.NotNull(list);
 
@@ -182,7 +182,7 @@ public static class ListExtensions
     /// <param name="task">The operation to evaluate for each item.</param>
     /// <param name="maxParallel">The maximum amount of tasks to run in parallel.</param>
     /// <returns>The list of results in the same order as source.</returns>
-    public static async Task<IList<TResult>> ForEachOrderedAsync<TSource, TResult>(
+    public static async Task<IReadOnlyList<TResult>> ForEachOrderedAsync<TSource, TResult>(
         this IEnumerable<TSource> source, Func<TSource, Task<TResult>> task, int maxParallel = 10)
     {
         Check.NotNull(source);
