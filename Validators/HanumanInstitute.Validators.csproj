@@ -11,10 +11,15 @@
     <PackageProjectUrl>https://github.com/mysteryx93/HanumanInstitute.Validators</PackageProjectUrl>
     <PackageTags>.net validators extensions tools</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>2.1.8</Version>
     <Title>HanumanInstitute.Validators</Title>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>bin\Release\HanumanInstitute.Validators.xml</DocumentationFile>
