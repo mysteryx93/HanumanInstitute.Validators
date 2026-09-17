@@ -112,6 +112,10 @@ Formats a string using invariant culture and appends it to the StringBuilder.
 
 Returns whether the string contains a value. It is the equivalent of !string.IsNullOrEmpty(value).
 
+#### String.HasText()
+
+Returns whether the string contains non-whitespace text. It is the equivalent of !string.IsNullOrWhiteSpace(value).
+
 #### String.Default(defaultValue)
 
 Returns specified default value if the value is null or empty.

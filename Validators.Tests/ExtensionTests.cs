@@ -212,6 +212,32 @@ public class ExtensionTests
         Assert.Equal(expected, result);
     }
 
+    [Theory]
+    [InlineData(null, false)]
+    [InlineData("", false)]
+    [InlineData(" ", false)]
+    [InlineData("\t", false)]
+    [InlineData("a", true)]
+    [InlineData(" a ", true)]
+    public void HasText_Various_ReturnsExpected(string value, bool expected)
+    {
+        var result = value.HasText();
+
+        Assert.Equal(expected, result);
+    }
+
+    [Theory]
+    [InlineData(null, false)]
+    [InlineData("", false)]
+    [InlineData(" ", true)]
+    [InlineData("a", true)]
+    public void HasValue_Various_ReturnsExpected(string value, bool expected)
+    {
+        var result = value.HasValue();
+
+        Assert.Equal(expected, result);
+    }
+
     [Fact]
     public void GetValueOrDefault_ClassKeyExists_ReturnsValue()
     {

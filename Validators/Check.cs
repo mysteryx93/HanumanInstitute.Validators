@@ -66,7 +66,7 @@ public static class Check
     /// </summary>
     /// <param name="value">The value to validate.</param>
     /// <param name="name">The name of the parameter.</param>
-    public static IEnumerable<T> NotNullOrEmpty<T>([NotNull, JetBrains.Annotations.NoEnumeration] IEnumerable<T>? value,
+    public static IEnumerable<T> NotNullOrEmpty<T>([NotNull] IEnumerable<T>? value,
         [CallerArgumentExpression(nameof(value))] string name = "")
     {
         // ReSharper disable PossibleMultipleEnumeration

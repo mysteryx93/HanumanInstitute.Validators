@@ -13,7 +13,7 @@ public class PreconditionsTests
     {
         int? value = 5;
 
-        var result = value.CheckNotNull(nameof(value));
+        var result = value.CheckNotNull();
 
         Assert.Equal(value, result);
     }
@@ -25,7 +25,7 @@ public class PreconditionsTests
 
         void Act()
         {
-            value.CheckNotNull(nameof(value));
+            value.CheckNotNull();
         }
 
         Assert.Throws<ArgumentNullException>(nameof(value), Act);
@@ -36,7 +36,7 @@ public class PreconditionsTests
     {
         var value = "a";
 
-        var result = value.CheckNotNull(nameof(value));
+        var result = value.CheckNotNull();
 
         Assert.Equal(value, result);
     }
@@ -46,7 +46,7 @@ public class PreconditionsTests
     {
         string value = null;
 
-        void Act() => value.CheckNotNullOrEmpty(nameof(value));
+        void Act() => value.CheckNotNullOrEmpty();
 
         Assert.Throws<ArgumentNullException>(nameof(value), Act);
     }
@@ -58,7 +58,7 @@ public class PreconditionsTests
 
         void Act()
         {
-            value.CheckNotNullOrEmpty(nameof(value));
+            value.CheckNotNullOrEmpty();
         }
 
         Assert.Throws<ArgumentException>(nameof(value), Act);
@@ -71,7 +71,7 @@ public class PreconditionsTests
 
         void Act()
         {
-            value.CheckNotNullOrEmpty(nameof(value));
+            value.CheckNotNullOrEmpty();
         }
 
         Assert.Throws<ArgumentNullException>(nameof(value), Act);
@@ -84,7 +84,7 @@ public class PreconditionsTests
 
         void Act()
         {
-            value.CheckNotNullOrEmpty(nameof(value));
+            value.CheckNotNullOrEmpty();
         }
 
         Assert.Throws<ArgumentException>(nameof(value), Act);
@@ -110,7 +110,7 @@ public class PreconditionsTests
     [InlineData(double.MinValue * .99, double.MinValue, false, double.MaxValue, true)]
     public void CheckRange_Valid_ReturnsValue(double value, double? min, bool minInclusive, double? max, bool maxInclusive)
     {
-        var result = value.CheckRange(nameof(value), min, minInclusive, max, maxInclusive);
+        var result = value.CheckRange(min, minInclusive, max, maxInclusive);
 
         Assert.Equal(value, result);
     }
@@ -122,7 +122,7 @@ public class PreconditionsTests
 
         void Act()
         {
-            value.CheckRange(nameof(value), -1);
+            value.CheckRange(-1);
         }
 
         var exception = Assert.Throws<ArgumentOutOfRangeException>(nameof(value), Act);
@@ -136,7 +136,7 @@ public class PreconditionsTests
 
         void Act()
         {
-            value.CheckRange(nameof(value), 0, false);
+            value.CheckRange(0, false);
         }
 
         var exception = Assert.Throws<ArgumentOutOfRangeException>(nameof(value), Act);
@@ -150,7 +150,7 @@ public class PreconditionsTests
 
         void Act()
         {
-            value.CheckRange(nameof(value), max: -10);
+            value.CheckRange(max: -10);
         }
 
         var exception = Assert.Throws<ArgumentOutOfRangeException>(nameof(value), Act);
@@ -164,7 +164,7 @@ public class PreconditionsTests
 
         void Act()
         {
-            value.CheckRange(nameof(value), max: -10, maxInclusive: false);
+            value.CheckRange(max: -10, maxInclusive: false);
         }
 
         var exception = Assert.Throws<ArgumentOutOfRangeException>(nameof(value), Act);
@@ -178,7 +178,7 @@ public class PreconditionsTests
 
         void Act()
         {
-            value.CheckRange(nameof(value), 10, true, 20);
+            value.CheckRange(10, true, 20);
         }
 
         var exception = Assert.Throws<ArgumentOutOfRangeException>(nameof(value), Act);
@@ -192,7 +192,7 @@ public class PreconditionsTests
 
         void Act()
         {
-            value.CheckRange(nameof(value), 10, false, 20, false);
+            value.CheckRange(10, false, 20, false);
         }
 
         var exception = Assert.Throws<ArgumentOutOfRangeException>(nameof(value), Act);

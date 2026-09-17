@@ -1,5 +1,16 @@
 What's New
 
+v2.1.8       2026-09-17
+- Added String.HasText, the whitespace counterpart of HasValue (!string.IsNullOrWhiteSpace)
+- CheckNotNull keeps [NoEnumeration] in the compiled assembly without a JetBrains.Annotations package dependency
+- Removed the JetBrains.Annotations NuGet dependency
+
+v2.1.7       2026-08-18
+- CheckRange and GetRangeError: moved parameter name to the end so it's truly optional (auto-filled argument).
+
+v2.1.6       2026-08-18
+- ForEachOrderedAsync and AsReadOnly now return IReadOnlyList instead of IList
+
 v2.1.5       2026-08-08
 - Added IDictionary.GetValueOrDefault
 

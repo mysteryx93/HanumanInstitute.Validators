@@ -27,6 +27,13 @@ public static class StringExtensions
     public static bool HasValue([NotNullWhen(true)] this string? value) => !string.IsNullOrEmpty(value);
 
     /// <summary>
+    /// Returns whether the string contains non-whitespace text. It is the equivalent of !string.IsNullOrWhiteSpace(value).
+    /// </summary>
+    /// <param name="value">The string to evaluate.</param>
+    /// <returns>Whether the string is not null, empty, or whitespace.</returns>
+    public static bool HasText([NotNullWhen(true)] this string? value) => !string.IsNullOrWhiteSpace(value);
+
+    /// <summary>
     /// Returns specified default value if the value is null or empty.
     /// </summary>
     /// <param name="value">The value to evaluate.</param>

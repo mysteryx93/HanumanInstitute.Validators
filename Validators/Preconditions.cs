@@ -43,7 +43,7 @@ public static class Preconditions
     /// </summary>
     /// <param name="value">The value to validate.</param>
     /// <param name="name">The name of the parameter.</param>
-    public static IEnumerable<T> CheckNotNullOrEmpty<T>([NotNull, JetBrains.Annotations.NoEnumeration] this IEnumerable<T>? value, [CallerArgumentExpression(nameof(value))] string name = "") =>
+    public static IEnumerable<T> CheckNotNullOrEmpty<T>([NotNull] this IEnumerable<T>? value, [CallerArgumentExpression(nameof(value))] string name = "") =>
         Check.NotNullOrEmpty(value, name);
 
     /// <summary>
@@ -94,14 +94,14 @@ public static class Preconditions
     /// </summary>
     /// <typeparam name="T">The type of data to validate.</typeparam>
     /// <param name="value">The value to validate.</param>
-    /// <param name="name">The name of the parameter.</param>
     /// <param name="min">The minimum valid value.</param>
     /// <param name="minInclusive">Whether the minimum value is valid.</param>
     /// <param name="max">The maximum valid value.</param>
     /// <param name="maxInclusive">Whether the maximum value is valid.</param>
+    /// <param name="name">The name of the parameter.</param>
     /// <returns>The value if valid.</returns>
-    public static T CheckRange<T>(this T value, [CallerArgumentExpression(nameof(value))] string name = "", T? min = null, bool minInclusive = true, T? max = null,
-        bool maxInclusive = true)
+    public static T CheckRange<T>(this T value, T? min = null, bool minInclusive = true, T? max = null,
+        bool maxInclusive = true, [CallerArgumentExpression(nameof(value))] string name = "")
         where T : struct, IComparable<T> =>
         Check.Range(value, min, minInclusive, max, maxInclusive, name);
 
@@ -110,14 +110,14 @@ public static class Preconditions
     /// </summary>
     /// <typeparam name="T">The type of data to validate.</typeparam>
     /// <param name="value">The value to validate.</param>
-    /// <param name="name">The name of the parameter.</param>
     /// <param name="min">The minimum valid value.</param>
     /// <param name="minInclusive">Whether the minimum value is valid.</param>
     /// <param name="max">The maximum valid value.</param>
     /// <param name="maxInclusive">Whether the maximum value is valid.</param>
+    /// <param name="name">The name of the parameter.</param>
     /// <returns>The range validation message.</returns>
-    public static string? GetRangeError<T>(this T value, [CallerArgumentExpression(nameof(value))] string name = "", T? min = null, 
-        bool minInclusive = true, T? max = null, bool maxInclusive = true)
+    public static string? GetRangeError<T>(this T value, T? min = null,
+        bool minInclusive = true, T? max = null, bool maxInclusive = true, [CallerArgumentExpression(nameof(value))] string name = "")
         where T : struct, IComparable<T> =>
         Check.GetRangeError(value, min, minInclusive, max, maxInclusive, name);
 
